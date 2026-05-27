@@ -1,0 +1,26 @@
+{
+	"name": "gw",
+	"version": "0.1.0",
+	"type": "module",
+	"bin": {
+		"gw": "./bin/gw"
+	},
+	"scripts": {
+		"dev": "tsc -w",
+		"build": "tsc"
+	},
+	"dependencies": {
+		"chalk": "^5.6.2",
+		"commander": "^14.0.3",
+		"zod": "^4.4.3"
+	},
+	"devDependencies": {
+		"@t1xx1/tsfix": "^1.0.0",
+		"@types/node": "^25.9.1",
+		"typescript": "^6.0.3"
+	},
+	"engines": {
+		"node": ">=24"
+	},
+	"packageManager": "pnpm@11.4.0"
+}
