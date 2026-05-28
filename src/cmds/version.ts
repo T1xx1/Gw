@@ -1,11 +1,10 @@
 import { Cmd } from '../cmd.js';
 import { getPackageJson } from '../package.js';
 
-export const version = Cmd('version')
-	.alias('v')
-	.description('print version')
-	.action(() => {
-		const packageJson = getPackageJson();
+export const _version = () => {
+	const packageJson = getPackageJson();
 
-		console.log(packageJson.version);
-	});
+	console.log(packageJson.version);
+};
+
+export const version = Cmd('version').alias('v').description('print version').action(_version);

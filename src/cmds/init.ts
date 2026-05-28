@@ -4,24 +4,24 @@ import chalk from 'chalk';
 
 import { Cmd } from '../cmd.js';
 import { Git } from '../git.js';
-import { _init } from './config/init.js';
+import { _init as _configInit } from './config/init.js';
 
-export const init = Cmd('init')
-	.description('initialize Git repo and Gw config')
-	.action(() => {
-		const isRepo = Git.isRepo();
+export const _init = () => {
+	const isRepo = Git.isRepo();
 
-		if (isRepo) {
-			console.log(chalk.grey('Git repo is already initialized'));
+	if (isRepo) {
+		console.log(chalk.grey('Git repo is already initialized'));
 
-			return;
-		}
+		return;
+	}
 
-		execSync('git init', {
-			stdio: 'pipe',
-		});
-
-		console.log(chalk.green('Git repo initialized'));
-
-		_init();
+	execSync('git init', {
+		stdio: 'pipe',
 	});
+
+	console.log(chalk.green('Git repo initialized'));
+
+	_configInit();
+};
+
+export const init = Cmd('init').description('initialize Git repo and Gw config').action(_init);

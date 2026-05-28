@@ -1,6 +1,6 @@
-export * from './branch/_index.js';
-export * from './config/_index.js';
-export * from './deinit.js';
-export * from './information.js';
-export * from './init.js';
-export * from './version.js';
+export { branch } from './branch/_index.js';
+export { config } from './config/_index.js';
+export { deinit } from './deinit.js';
+export { information } from './information.js';
+export { init } from './init.js';
+export { version } from './version.js';
