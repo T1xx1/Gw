@@ -1,14 +1,13 @@
 import { execSync } from 'node:child_process';
 
 import chalk from 'chalk';
-import { Command } from 'commander';
 
+import { Cmd } from '../cmd.js';
 import { Git } from '../git.js';
 import { _init } from './config/init.js';
 
-export const init = new Command('init')
+export const init = Cmd('init')
 	.description('initialize Git repo and Gw config')
-	.helpCommand('help [command]', 'print help')
 	.action(() => {
 		const isRepo = Git.isRepo();
 

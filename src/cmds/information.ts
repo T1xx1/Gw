@@ -1,12 +1,12 @@
 import { execSync } from 'node:child_process';
 
 import chalk from 'chalk';
-import { Command } from 'commander';
 
+import { Cmd } from '../cmd.js';
 import { colors } from '../color.js';
 import { getPackageJson } from '../package.js';
 
-export const information = new Command('information')
+export const information = Cmd('information')
 	.alias('info')
 	.alias('i')
 	.description('print information')

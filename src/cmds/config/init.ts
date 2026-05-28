@@ -1,8 +1,8 @@
 import { existsSync, writeFileSync } from 'node:fs';
 
 import chalk from 'chalk';
-import { Command } from 'commander';
 
+import { Cmd } from '../../cmd.js';
 import { getConfigPath, initialConfig } from '../../config/_index.js';
 
 export const _init = () => {
@@ -19,7 +19,4 @@ export const _init = () => {
 	console.log(chalk.green('Gw config initialized'));
 };
 
-export const init = new Command('init')
-	.description('initialize Gw config')
-	.helpCommand('help [command]', 'print help')
-	.action(_init);
+export const init = Cmd('init').description('initialize Gw config').action(_init);

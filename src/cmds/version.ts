@@ -1,8 +1,7 @@
-import { Command } from 'commander';
-
+import { Cmd } from '../cmd.js';
 import { getPackageJson } from '../package.js';
 
-export const version = new Command('version')
+export const version = Cmd('version')
 	.alias('v')
 	.description('print version')
 	.action(() => {

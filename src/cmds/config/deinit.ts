@@ -2,8 +2,8 @@ import { existsSync, rmSync } from 'node:fs';
 
 import { confirm } from '@clack/prompts';
 import chalk from 'chalk';
-import { Command } from 'commander';
 
+import { Cmd } from '../../cmd.js';
 import { getConfigPath } from '../../config/_index.js';
 
 export const _deinit = async () => {
@@ -28,7 +28,4 @@ export const _deinit = async () => {
 	console.log(chalk.green('Gw config deinitialized'));
 };
 
-export const deinit = new Command('deinit')
-	.description('deinitialize Gw config')
-	.helpCommand('help [command]', 'print help')
-	.action(_deinit);
+export const deinit = Cmd('deinit').description('deinitialize Gw config').action(_deinit);

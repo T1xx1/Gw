@@ -3,14 +3,13 @@ import { join } from 'node:path/posix';
 
 import { confirm } from '@clack/prompts';
 import chalk from 'chalk';
-import { Command } from 'commander';
 
+import { Cmd } from '../cmd.js';
 import { Git } from '../git.js';
 import { _deinit } from './config/deinit.js';
 
-export const deinit = new Command('deinit')
+export const deinit = Cmd('deinit')
 	.description('deinitialize Git repo and Gw config')
-	.helpCommand('help [command]', 'print help')
 	.action(async () => {
 		await _deinit();
 
