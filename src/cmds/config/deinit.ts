@@ -19,6 +19,8 @@ export const _deinit = async () => {
 
 	if (!existsSync(configPath)) {
 		console.log(chalk.grey('No Gw config to deinitialize'));
+
+		return;
 	}
 
 	rmSync(configPath, {

@@ -23,12 +23,16 @@ export const deinit = Cmd('deinit')
 
 		const repoRoot = Git.getRepoRoot();
 
-		if (repoRoot) {
-			rmSync(join(repoRoot, '.git'), {
-				force: true,
-				recursive: true,
-			});
+		if (!repoRoot) {
+			console.log(chalk.grey('No Git repo to deinitialize'));
 
-			console.log(chalk.green('Git repo deinitialized'));
+			return;
 		}
+
+		rmSync(join(repoRoot, '.git'), {
+			force: true,
+			recursive: true,
+		});
+
+		console.log(chalk.green('Git repo deinitialized'));
 	});
