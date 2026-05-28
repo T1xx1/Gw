@@ -7,6 +7,7 @@ import { Cmd } from '../../cmd.js';
 import { getConfig } from '../../config/_index.js';
 import { Git } from '../../git.js';
 import { process } from '../../node.js';
+import { panic } from '../../panic.js';
 
 export const _list = () => {
 	if (!Git.isRepo()) {
@@ -31,9 +32,7 @@ export const _list = () => {
 	});
 
 	if (error || data === null) {
-		console.log(chalk.magenta('MPPD6WR9TK'));
-
-		return;
+		throw panic('MPPD6WR9TK');
 	}
 
 	if (data.length === 0) {
