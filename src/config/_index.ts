@@ -1,34 +1,54 @@
 import { existsSync, readFileSync } from 'node:fs';
-import { join } from 'node:path/posix';
+import { dirname, join } from 'node:path/posix';
 
 import { Git } from '../git.js';
+import { process } from '../node.js';
 import { defaultConfig, type Config, type PartialConfig } from './ref.js';
 
-export const getConfigPath = (): null | string => {
-	const root = Git.getRoot();
+export const CONFIG_FILENAME = 'gw.config.json';
 
-	if (!root) {
-		return null;
+export const getConfigPath = (): string => {
+	const root = Git.getRepoRoot();
+
+	if (root) {
+		return join(root, CONFIG_FILENAME);
 	}
 
-	return join(root, 'gw.config.json');
+	let currDir = process.cwd();
+
+	while (true) {
+		const candidate = join(currDir, CONFIG_FILENAME);
+
+		if (existsSync(candidate)) {
+			return join(candidate, CONFIG_FILENAME);
+		}
+
+		const parent = dirname(currDir);
+
+		/* sys root */
+		if (parent === currDir) {
+			return join(currDir, CONFIG_FILENAME);
+		}
+
+		currDir = parent;
+	}
 };
 
 export const getConfig = (): Config => {
 	const path = getConfigPath();
 
-	if (!path || !existsSync(path)) {
+	if (!existsSync(path)) {
 		return defaultConfig;
 	}
 
 	const partialConfig = JSON.parse(readFileSync(path, 'utf-8')) as PartialConfig;
 
 	return {
-		worktrees: partialConfig.worktrees
-			? {
-					dir: partialConfig.worktrees?.dir ?? defaultConfig.worktrees.dir,
-				}
-			: defaultConfig.worktrees,
+		...partialConfig,
+		...defaultConfig,
+		worktrees: {
+			dir: partialConfig.worktrees?.dir ?? defaultConfig.worktrees.dir,
+		},
 	};
 };
 

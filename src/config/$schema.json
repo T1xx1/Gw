@@ -1,0 +1,25 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"title": "Gw config",
+	"type": "object",
+	"required": ["$schema"],
+	"additionalProperties": false,
+	"properties": {
+		"$schema": {
+			"type": "string",
+			"description": "JSON $schema",
+			"default": "https://raw.githubusercontent.com/t1xx1/Gw/main/src/config/$schema.json"
+		},
+		"worktrees": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"dir": {
+					"type": "string",
+					"description": "Relative directory to create new worktrees. Defaults to '../'",
+					"default": "../"
+				}
+			}
+		}
+	}
+}

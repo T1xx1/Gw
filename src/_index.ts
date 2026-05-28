@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import { Command } from 'commander';
 
-import { deinit, information, init, version } from './cmds/_index.js';
+import { config, deinit, information, init, version } from './cmds/_index.js';
 import { getPackageJson } from './package.js';
 
 const PACKAGE_JSON = getPackageJson();
@@ -23,8 +23,7 @@ shell.addCommand(information);
 
 /* */
 
-shell.addCommand(deinit);
-shell.addCommand(init);
+shell.addCommand(config).addCommand(deinit).addCommand(init);
 
 /* */
 

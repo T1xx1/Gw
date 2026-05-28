@@ -1,22 +1,40 @@
-export type Config = {
-	worktrees: {
-		dir: string;
-	};
-};
+import { z } from 'zod';
 
-export type PartialConfig = {
-	worktrees?: Partial<Config['worktrees']>;
-};
+export const configValidator = z.object({
+	/**
+	 * JSON $schema
+	 */
+	$schema: z.url(),
+	/**
+	 * Worktrees
+	 */
+	worktrees: z.object({
+		/**
+		 * Relative directory to create new worktrees.
+		 *
+		 * @default '../'
+		 */
+		dir: z.string(),
+	}),
+});
+
+export type Config = z.infer<typeof configValidator>;
+
+const partialConfigValidator = configValidator.partial();
+
+export type PartialConfig = z.infer<typeof partialConfigValidator>;
 
 /* */
 
 export const initialConfig: PartialConfig = {
+	$schema: 'https://raw.githubusercontent.com/t1xx1/Gw/main/src/config/$schema.json',
 	worktrees: {
 		dir: '../',
 	},
 };
 
 export const defaultConfig: Config = {
+	$schema: 'https://raw.githubusercontent.com/t1xx1/Gw/main/src/config/$schema.json',
 	worktrees: {
 		dir: '../',
 	},

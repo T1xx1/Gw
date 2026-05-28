@@ -21,7 +21,7 @@ export namespace Git {
 		return true;
 	};
 
-	export const getRoot = (): null | string => {
+	export const getRepoRoot = (): null | string => {
 		const { data, error } = tryCatchSync(() => {
 			return execSync('git rev-parse --show-toplevel', {
 				stdio: 'pipe',
