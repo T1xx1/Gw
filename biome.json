@@ -1,0 +1,47 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.4.16/schema.json",
+	"plugins": ["./.biome/arrowbodystyle.grit"],
+	"files": {
+		"includes": ["**"]
+	},
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"useIgnoreFile": true
+	},
+	"formatter": {
+		"lineWidth": 100
+	},
+	"linter": {
+		"rules": {
+			"complexity": {
+				"useLiteralKeys": "off"
+			},
+			"style": {
+				"noDefaultExport": "on",
+				"noNonNullAssertion": "off",
+				"useBlockStatements": "on"
+			},
+			"suspicious": {
+				"noExplicitAny": "off"
+			}
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single"
+		}
+	},
+	"overrides": [
+		{
+			"includes": ["**/*.config.*"],
+			"linter": {
+				"rules": {
+					"style": {
+						"noDefaultExport": "off"
+					}
+				}
+			}
+		}
+	]
+}
