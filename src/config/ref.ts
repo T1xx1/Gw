@@ -18,11 +18,15 @@ export const configValidator = z.object({
 	}),
 });
 
-export type Config = z.infer<typeof configValidator>;
+export type Config = z.infer<typeof configValidator> & {
+	[key: string]: any;
+};
 
 const partialConfigValidator = configValidator.partial();
 
-export type PartialConfig = z.infer<typeof partialConfigValidator>;
+export type PartialConfig = z.infer<typeof partialConfigValidator> & {
+	[key: string]: any;
+};
 
 /* */
 

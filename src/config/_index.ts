@@ -34,14 +34,18 @@ export const getConfigPath = (): string => {
 	}
 };
 
-export const getConfig = (): Config => {
+export const getPartialConfig = (): PartialConfig => {
 	const path = getConfigPath();
 
 	if (!existsSync(path)) {
 		return defaultConfig;
 	}
 
-	const partialConfig = JSON.parse(readFileSync(path, 'utf-8')) as PartialConfig;
+	return JSON.parse(readFileSync(path, 'utf-8')) as PartialConfig;
+};
+
+export const getConfig = (): Config => {
+	const partialConfig = getPartialConfig();
 
 	return {
 		...partialConfig,
