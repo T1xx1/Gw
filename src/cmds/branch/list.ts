@@ -6,15 +6,11 @@ import chalk from 'chalk';
 import { Cmd } from '../../cmd.js';
 import { getConfig } from '../../config/_index.js';
 import { Git } from '../../git.js';
-import { process } from '../../node.js';
+import { guard } from '../../guard.js';
 import { panic } from '../../panic.js';
 
 export const _list = () => {
-	if (!Git.isRepo()) {
-		console.log(chalk.redBright(`${process.cwd()} is not a Git repo`));
-
-		return;
-	}
+	guard.isGitRepo();
 
 	const currBranch = Git.getCurrBranch();
 	const config = getConfig();
