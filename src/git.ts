@@ -10,7 +10,7 @@ export namespace Git {
 					stdio: 'pipe',
 				})
 					.toString()
-					.trim() === 'true'
+					.trimEnd() === 'true'
 			);
 		});
 
@@ -27,7 +27,7 @@ export namespace Git {
 				stdio: 'pipe',
 			})
 				.toString()
-				.trim();
+				.trimEnd();
 		});
 
 		if (error || !data) {
@@ -43,7 +43,7 @@ export namespace Git {
 				stdio: 'pipe',
 			})
 				.toString()
-				.trim();
+				.trimEnd();
 		});
 
 		if (error || !data) {

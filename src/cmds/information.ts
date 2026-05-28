@@ -17,7 +17,7 @@ export const information = Cmd('information')
 			stdio: 'pipe',
 		})
 			.toString()
-			.trim()
+			.trimEnd()
 			.split(' ')
 			.at(-1);
 
