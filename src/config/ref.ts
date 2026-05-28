@@ -40,6 +40,9 @@ export type PartialConfig = z.infer<typeof partialConfigValidator> & {
 
 export const initialConfig: PartialConfig = {
 	$schema: 'https://raw.githubusercontent.com/t1xx1/Gw/main/src/config/$schema.json',
+	branches: {
+		mainBranch: 'main',
+	},
 	worktrees: {
 		dir: '../',
 	},
