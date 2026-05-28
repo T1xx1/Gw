@@ -13,7 +13,13 @@ export const information = Cmd('information')
 	.action(() => {
 		const packageJson = getPackageJson();
 
-		const gitVer = execSync('git -v').toString().split(' ').at(-1);
+		const gitVer = execSync('git -v', {
+			stdio: 'pipe',
+		})
+			.toString()
+			.trim()
+			.split(' ')
+			.at(-1);
 
 		const gwDeps = Object.entries(packageJson.dependencies)
 			.map(([name, version]) => {

@@ -17,7 +17,9 @@ export const init = Cmd('init')
 			return;
 		}
 
-		execSync('git init');
+		execSync('git init', {
+			stdio: 'pipe',
+		});
 
 		console.log(chalk.green('Git repo initialized'));
 
