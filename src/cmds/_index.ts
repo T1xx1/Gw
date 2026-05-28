@@ -1,3 +1,4 @@
+export * from './branch/_index.js';
 export * from './config/_index.js';
 export * from './deinit.js';
 export * from './information.js';

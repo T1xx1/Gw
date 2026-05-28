@@ -36,4 +36,20 @@ export namespace Git {
 
 		return data;
 	};
+
+	export const getCurrBranch = (): string => {
+		const { data, error } = tryCatchSync(() => {
+			return execSync('git rev-parse --abbrev-ref HEAD', {
+				stdio: 'pipe',
+			})
+				.toString()
+				.trim();
+		});
+
+		if (error || !data) {
+			return '';
+		}
+
+		return data;
+	};
 }

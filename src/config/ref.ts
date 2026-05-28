@@ -5,6 +5,14 @@ export const configValidator = z.object({
 	 * JSON $schema
 	 */
 	$schema: z.url(),
+	branches: z.object({
+		/**
+		 * Main branch
+		 *
+		 * @default 'main'
+		 */
+		mainBranch: z.string(),
+	}),
 	/**
 	 * Worktrees
 	 */
@@ -39,6 +47,9 @@ export const initialConfig: PartialConfig = {
 
 export const defaultConfig: Config = {
 	$schema: 'https://raw.githubusercontent.com/t1xx1/Gw/main/src/config/$schema.json',
+	branches: {
+		mainBranch: 'main',
+	},
 	worktrees: {
 		dir: '../',
 	},

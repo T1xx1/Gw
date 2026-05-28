@@ -10,6 +10,17 @@
 			"description": "JSON $schema",
 			"default": "https://raw.githubusercontent.com/t1xx1/Gw/main/src/config/$schema.json"
 		},
+		"branches": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"mainBranch": {
+					"type": "string",
+					"description": "Main branch. Defaults to 'main'",
+					"default": "main"
+				}
+			}
+		},
 		"worktrees": {
 			"type": "object",
 			"additionalProperties": false,
