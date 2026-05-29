@@ -66,8 +66,34 @@ export namespace Git {
 		return exec('git branch --format="%(refname:short)"', 'MPPD6WR9TK').split('\n');
 	};
 
+	export const createBranch = (name: string): void => {
+		exec(`git branch ${name}`, 'MPRI2ZDOTD');
+	};
+
+	export const renameBranch = (name: string, newName: string): void => {
+		exec(`git branch -m ${name} ${newName}`, 'MPRI5XS8UB');
+	};
+
+	export const deleteBranch = (name: string): void => {
+		exec(`git branch -D ${name}`, 'MPRI5JFJF9');
+	};
+
 	export const checkout = (branch: string): void => {
 		exec(`git checkout ${branch}`, 'MPQ1H7USLF');
+	};
+
+	/*  */
+
+	export const getWorktrees = () => {
+		const chunks = exec('git worktree list --porcelain', 'MPPD6WR9TK').split('\n\n');
+
+		return Object.fromEntries(
+			chunks.map((line) => {
+				const lines = line.split('\n');
+
+				return [lines[2].split('/').at(-1)!, lines[0].split(' ').at(-1)!];
+			}),
+		);
 	};
 }
 
