@@ -20,7 +20,7 @@ export const _checkout = (branch: string) => {
 		throw panic('MPQ1H7USLF');
 	}
 
-	console.log(chalk.green(`Checkout out to branch '${branch}'`));
+	console.log(chalk.green(`Checked out to branch '${branch}'`));
 };
 
 export const checkout = Cmd('checkout')
