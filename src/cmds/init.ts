@@ -1,5 +1,3 @@
-import { execSync } from 'node:child_process';
-
 import chalk from 'chalk';
 
 import { Cmd } from '../cmd.js';
@@ -15,9 +13,7 @@ export const _init = () => {
 		return;
 	}
 
-	execSync('git init', {
-		stdio: 'pipe',
-	});
+	Git.init();
 
 	console.log(chalk.green('Git repo initialized'));
 

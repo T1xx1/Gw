@@ -1,24 +1,13 @@
-import { execSync } from 'node:child_process';
-
-import { tryCatchSync } from '@t1xx1/tsfix';
 import chalk from 'chalk';
 
 import { Cmd } from '../../cmd.js';
+import { Git } from '../../git.js';
 import { guard } from '../../guard.js';
-import { panic } from '../../panic.js';
 
 export const _checkout = (branch: string) => {
 	guard.isGitRepo();
 
-	const { error } = tryCatchSync(() => {
-		execSync(`git checkout ${branch}`, {
-			stdio: 'pipe',
-		});
-	});
-
-	if (error) {
-		throw panic('MPQ1H7USLF');
-	}
+	Git.checkout(branch);
 
 	console.log(chalk.green(`Checked out to branch '${branch}'`));
 };
