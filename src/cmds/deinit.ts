@@ -19,15 +19,13 @@ export const _deinit = async () => {
 		return;
 	}
 
-	const repoRoot = Git.getRepoRoot();
-
-	if (!repoRoot) {
+	if (!Git.isRepo()) {
 		console.log(chalk.grey('No Git repo to deinitialize'));
 
 		return;
 	}
 
-	rmSync(join(repoRoot, '.git'), {
+	rmSync(join(Git.getRepoRoot(), '.git'), {
 		force: true,
 		recursive: true,
 	});

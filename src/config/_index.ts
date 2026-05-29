@@ -8,10 +8,8 @@ import { defaultConfig, type Config, type PartialConfig } from './ref.js';
 export const CONFIG_FILENAME = 'gw.config.json';
 
 export const getConfigPath = (): string => {
-	const root = Git.getRepoRoot();
-
-	if (root) {
-		return join(root, CONFIG_FILENAME);
+	if (Git.isRepo()) {
+		return join(Git.getRepoRoot(), CONFIG_FILENAME);
 	}
 
 	let currDir = process.cwd();
