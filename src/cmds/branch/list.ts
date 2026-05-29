@@ -16,15 +16,12 @@ export const _list = () => {
 	const config = getConfig();
 
 	const { data, error } = tryCatchSync(() => {
-		return execSync('git branch', {
+		return execSync('git branch --format="%(refname:short)"', {
 			stdio: 'pipe',
 		})
 			.toString()
 			.trimEnd()
-			.split('\n')
-			.map((line) => {
-				return line.slice(2);
-			});
+			.split('\n');
 	});
 
 	if (error || data === null) {
