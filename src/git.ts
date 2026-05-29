@@ -56,18 +56,14 @@ export namespace Git {
 		return exec('git rev-parse --show-toplevel', 'MPRC29HLJI');
 	};
 
+	/*  */
+
 	export const getCurrBranch = (): string => {
 		return exec('git rev-parse --abbrev-ref HEAD', 'MPRBX7LBVW');
 	};
 
 	export const getBranches = (): string[] => {
-		const data = exec('git branch --format="%(refname:short)"', 'MPPD6WR9TK');
-
-		if (data === '') {
-			return [];
-		}
-
-		return data.split('\n');
+		return exec('git branch --format="%(refname:short)"', 'MPPD6WR9TK').split('\n');
 	};
 
 	export const checkout = (branch: string): void => {

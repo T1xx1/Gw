@@ -3,6 +3,7 @@ import chalk from 'chalk';
 import { Cmd } from '../../cmd.js';
 import { getConfig } from '../../config/_index.js';
 import { Git, isRepoGuard } from '../../git.js';
+import { styleBranch } from './_index.js';
 
 export const _list = () => {
 	isRepoGuard();
@@ -18,25 +19,7 @@ export const _list = () => {
 	}
 
 	for (const branch of branches) {
-		if (currBranch === config.branches.mainBranch && currBranch === branch) {
-			console.log(chalk.blueBright(`~ ${branch}`));
-
-			continue;
-		}
-
-		if (config.branches.mainBranch === branch) {
-			console.log(`* ${branch}`);
-
-			continue;
-		}
-
-		if (currBranch === branch) {
-			console.log(chalk.blueBright(`. ${branch}`));
-
-			continue;
-		}
-
-		console.log(`  ${branch}`);
+		console.log(styleBranch(branch, config.branches.mainBranch, currBranch));
 	}
 };
 
