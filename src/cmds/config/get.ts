@@ -22,6 +22,6 @@ export const _get = (key: string) => {
 };
 
 export const get = Cmd('get')
-	.description('get value from Gw config')
+	.description('get a value from Gw config')
 	.argument('<key>', 'key')
 	.action(_get);

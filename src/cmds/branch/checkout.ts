@@ -21,6 +21,6 @@ export const _checkout = (name: string) => {
 
 export const checkout = Cmd('checkout')
 	.alias('co')
-	.description('checkout branch')
+	.description('checkout to a branch')
 	.argument('<name>', 'branch name')
 	.action(_checkout);

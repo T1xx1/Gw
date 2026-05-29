@@ -6,6 +6,6 @@ export const _remove = () => {
 
 export const remove = Cmd('remove')
 	.alias('rm')
-	.description('remove value from Gw config')
+	.description('remove a value from Gw config')
 	.argument('<key>', 'key')
 	.action(_remove);
