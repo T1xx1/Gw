@@ -35,7 +35,7 @@ export const _create = (name: string) => {
 	Git.createBranch(name);
 	Git.createWorktree(name, join(mainWorktreeRoot, config.worktrees.dir, `${repoName}-${name}`));
 
-	console.log(chalk.green(`Worktree '${name}' opened`));
+	console.log(chalk.green(`Worktree '${name}' created`));
 };
 
 export const create = Cmd('create')
