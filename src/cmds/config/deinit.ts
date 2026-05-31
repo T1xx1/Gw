@@ -7,19 +7,19 @@ import { Cmd } from '../../cmd.js';
 import { getConfigPath } from '../../config/_index.js';
 
 export const _deinit = async () => {
-	if (
-		!(await confirm({
-			message: 'Are you sure you want to deinitialize the Gw config?',
-		}))
-	) {
-		return;
-	}
-
 	const configPath = getConfigPath();
 
 	if (!existsSync(configPath)) {
 		console.log(chalk.grey('No Gw config to deinitialize'));
 
+		return;
+	}
+
+	if (
+		!(await confirm({
+			message: 'Are you sure you want to deinitialize the Gw config?',
+		}))
+	) {
 		return;
 	}
 
