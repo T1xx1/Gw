@@ -113,13 +113,3 @@ export namespace Git {
 		exec(`git worktree remove --force ${path}`, 'MPTMRPSDDV');
 	};
 }
-
-export const isRepoGuard = (): void => {
-	if (Git.isRepo()) {
-		return;
-	}
-
-	console.log(chalk.redBright(`${process.cwd()} is not a Git repo`));
-
-	exit(0);
-};

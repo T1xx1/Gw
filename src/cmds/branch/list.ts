@@ -2,11 +2,12 @@ import chalk from 'chalk';
 
 import { Cmd } from '../../cmd.js';
 import { getConfig } from '../../config/_index.js';
-import { Git, isRepoGuard } from '../../git.js';
+import { Git } from '../../git.js';
+import { guard } from '../../guard.js';
 import { styleBranch } from './_index.js';
 
 export const _list = () => {
-	isRepoGuard();
+	guard.isRepo();
 
 	const config = getConfig();
 	const currBranch = Git.getCurrBranch();

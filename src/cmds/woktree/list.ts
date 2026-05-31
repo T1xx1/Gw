@@ -1,9 +1,10 @@
 import { Cmd } from '../../cmd.js';
-import { Git, isRepoGuard } from '../../git.js';
+import { Git } from '../../git.js';
+import { guard } from '../../guard.js';
 import { styleBranch } from '../branch/_index.js';
 
 export const _list = () => {
-	isRepoGuard();
+	guard.isRepo();
 
 	const currBranch = Git.getCurrBranch();
 	const branches = Git.getBranches();

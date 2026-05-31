@@ -1,10 +1,11 @@
 import chalk from 'chalk';
 
 import { Cmd } from '../../cmd.js';
-import { Git, isRepoGuard } from '../../git.js';
+import { Git } from '../../git.js';
+import { guard } from '../../guard.js';
 
 export const _close = (name: string) => {
-	isRepoGuard();
+	guard.isRepo();
 
 	const branches = Git.getBranches();
 
