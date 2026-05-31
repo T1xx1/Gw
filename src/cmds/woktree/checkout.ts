@@ -8,14 +8,7 @@ import { guard } from '../../guard.js';
 
 export const _checkout = (name: string) => {
 	guard.isRepo();
-
-	const branches = Git.getBranches();
-
-	if (!branches.includes(name)) {
-		console.log(chalk.redBright(`Branch '${name}' does not exist`));
-
-		return;
-	}
+	guard.branchExists(name);
 
 	const worktrees = Git.getWorktrees();
 

@@ -14,4 +14,13 @@ export const guard = {
 
 		exit(0);
 	},
+	branchExists: (name: string) => {
+		if (Git.getBranches().includes(name)) {
+			return;
+		}
+
+		console.log(chalk.redBright(`Branch '${name}' does not exist`));
+
+		exit(0);
+	},
 };

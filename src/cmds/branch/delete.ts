@@ -6,18 +6,9 @@ import { guard } from '../../guard.js';
 
 export const _delete = (name: string) => {
 	guard.isRepo();
+	guard.branchExists(name);
 
-	const branches = Git.getBranches();
-
-	if (!branches.includes(name)) {
-		console.log(chalk.redBright(`Branch '${name}' does not exist`));
-
-		return;
-	}
-
-	const worktrees = Git.getWorktrees();
-
-	if (worktrees[name]) {
+	if (Git.getWorktrees()[name]) {
 		console.log(chalk.redBright(`Branch '${name}' is a worktree`));
 		console.log(chalk.grey(`Use '>gw worktree delete ${name}' to delete the worktree`));
 
