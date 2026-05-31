@@ -20,7 +20,6 @@ export const _create = (name: string) => {
 };
 
 export const create = Cmd('create')
-	.alias('c')
 	.alias('add')
 	.alias('a')
 	.alias('new')
