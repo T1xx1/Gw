@@ -1,3 +1,5 @@
+import { chdir } from 'node:process';
+
 import chalk from 'chalk';
 
 import { Cmd } from '../../cmd.js';
@@ -14,13 +16,21 @@ export const _checkout = (name: string) => {
 		return;
 	}
 
-	Git.checkoutBranch(name);
+	const worktrees = Git.getWorktrees();
 
-	console.log(chalk.green(`Checked out to branch '${name}'`));
+	if (!worktrees[name]) {
+		console.log(chalk.grey(`Branch '${name}' is not a worktree`));
+
+		return;
+	}
+
+	chdir(worktrees[name]);
+
+	console.log(chalk.green(`Checked out to worktree '${name}'`));
 };
 
 export const checkout = Cmd('checkout')
 	.alias('co')
-	.description('checkout to a branch')
-	.argument('<name>', 'branch name')
+	.description('checkout worktree')
+	.argument('<name>', 'worktree name')
 	.action(_checkout);

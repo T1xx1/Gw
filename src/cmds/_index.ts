@@ -4,3 +4,4 @@ export { deinit } from './deinit.js';
 export { information } from './information.js';
 export { init } from './init.js';
 export { version } from './version.js';
+export { worktree } from './woktree/_index.js';
