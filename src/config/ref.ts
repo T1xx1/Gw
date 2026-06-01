@@ -7,7 +7,7 @@ export const configValidator = z.object({
 	$schema: z
 		.url()
 		.optional()
-		.default('https://raw.githubusercontent.com/t1xx1/Gw/main/src/config/$schema.json'),
+		.default('https://raw.githubusercontent.com/t1xx1/gw/main/src/config/$schema.json'),
 	branches: z
 		.object({
 			/**
@@ -54,14 +54,8 @@ export type Config = Required<PartialConfig> & {
 	worktrees: Required<PartialConfig['worktrees']>;
 };
 
-/* */
+/*  */
 
 export const initialConfig: PartialConfig = {
-	$schema: 'https://raw.githubusercontent.com/t1xx1/Gw/main/src/config/$schema.json',
-	branches: {
-		mainBranch: 'main',
-	},
-	worktrees: {
-		dir: '../',
-	},
+	$schema: 'https://raw.githubusercontent.com/t1xx1/gw/main/src/config/$schema.json',
 };
