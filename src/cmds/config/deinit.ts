@@ -30,4 +30,4 @@ export const _deinit = async () => {
 	console.log(chalk.green('Gw config deinitialized'));
 };
 
-export const deinit = Cmd('deinit').description('deinitialize Gw config').action(_deinit);
+export const deinit = Cmd('deinit').description('deinitialize the Gw config').action(_deinit);

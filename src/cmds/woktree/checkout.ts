@@ -25,6 +25,6 @@ export const _checkout = (name: string) => {
 
 export const checkout = Cmd('checkout')
 	.alias('co')
-	.description('checkout worktree')
+	.description('checkout to a worktree')
 	.argument('<name>', 'worktree name')
 	.action(_checkout);

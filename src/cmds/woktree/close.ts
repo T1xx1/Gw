@@ -23,6 +23,6 @@ export const _close = (name: string) => {
 };
 
 export const close = Cmd('close')
-	.description('close worktree')
+	.description('close a worktree')
 	.argument('<name>', 'worktree name')
 	.action(_close);

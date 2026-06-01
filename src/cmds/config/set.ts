@@ -5,7 +5,7 @@ export const _set = () => {
 };
 
 export const set = Cmd('set')
-	.description('set a value in Gw config')
+	.description('set a value in the Gw config')
 	.argument('<key>', 'key')
 	.argument('<value>', 'value')
 	.action(_set);
