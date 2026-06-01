@@ -1,11 +1,21 @@
 import chalk from 'chalk';
 
 import { Cmd } from '../../cmd.js';
+import { getConfig } from '../../config/_index.js';
 import { Git } from '../../git.js';
 import { guard } from '../../guard.js';
 
 export const _delete = (name: string) => {
 	guard.isRepo();
+
+	const config = getConfig();
+
+	if (name === config.branches.mainBranch) {
+		console.log(chalk.redBright('The main worktree cannot be deleted'));
+
+		return;
+	}
+
 	guard.branchExists(name);
 
 	const worktrees = Git.getWorktrees();
