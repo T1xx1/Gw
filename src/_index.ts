@@ -8,6 +8,7 @@ import {
 	graph,
 	information,
 	init,
+	status,
 	version,
 	worktree,
 } from './cmds/_index.js';
@@ -38,6 +39,7 @@ shell
 	.addCommand(deinit)
 	.addCommand(graph)
 	.addCommand(init)
+	.addCommand(status)
 	.addCommand(worktree);
 
 /* */

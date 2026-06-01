@@ -53,6 +53,12 @@ export namespace Git {
 
 	/*  */
 
+	export const getStatus = (): string => {
+		return exec('git status --porcelain', 'MPVR0YXKHK');
+	}
+
+	/*  */
+
 	export const getGraph = (): string => {
 		return exec('git -c color.ui=always log --all --graph --decorate --oneline', 'MPR0EM1AJ0');
 	};
