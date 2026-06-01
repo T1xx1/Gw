@@ -4,51 +4,59 @@ export const configValidator = z.object({
 	/**
 	 * JSON $schema
 	 */
-	$schema: z.url(),
-	branches: z.object({
-		/**
-		 * Main branch
-		 *
-		 * @default 'main'
-		 */
-		mainBranch: z.string(),
-	}),
+	$schema: z
+		.url()
+		.optional()
+		.default('https://raw.githubusercontent.com/t1xx1/Gw/main/src/config/$schema.json'),
+	branches: z
+		.object({
+			/**
+			 * Main branch
+			 *
+			 * @default 'main'
+			 */
+			mainBranch: z.string().optional().default('main'),
+		})
+		.optional()
+		.default({
+			mainBranch: 'main',
+		}),
 	/**
 	 * Worktrees
 	 */
-	worktrees: z.object({
-		/**
-		 * Relative directory to create new worktrees.
-		 *
-		 * @default '../'
-		 */
-		dir: z.string(),
-	}),
+	worktrees: z
+		.object({
+			/**
+			 * Relative directory to create new worktrees.
+			 *
+			 * @default '../'
+			 */
+			dir: z.string().optional().default('../'),
+		})
+		.optional()
+		.default({
+			dir: '../',
+		}),
 });
 
-export type Config = z.infer<typeof configValidator> & {
-	[key: string]: any;
+export type PartialConfig = {
+	$schema?: string;
+	branches?: {
+		mainBranch?: string;
+	};
+	worktrees?: {
+		dir?: string;
+	};
 };
 
-const partialConfigValidator = configValidator.partial();
-
-export type PartialConfig = z.infer<typeof partialConfigValidator> & {
-	[key: string]: any;
+export type Config = Required<PartialConfig> & {
+	branches: Required<PartialConfig['branches']>;
+	worktrees: Required<PartialConfig['worktrees']>;
 };
 
 /* */
 
 export const initialConfig: PartialConfig = {
-	$schema: 'https://raw.githubusercontent.com/t1xx1/Gw/main/src/config/$schema.json',
-	branches: {
-		mainBranch: 'main',
-	},
-	worktrees: {
-		dir: '../',
-	},
-};
-
-export const defaultConfig: Config = {
 	$schema: 'https://raw.githubusercontent.com/t1xx1/Gw/main/src/config/$schema.json',
 	branches: {
 		mainBranch: 'main',

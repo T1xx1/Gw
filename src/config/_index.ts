@@ -1,9 +1,13 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path/posix';
+import { exit } from 'node:process';
+
+import { tryCatchSync } from '@t1xx1/tsfix';
+import chalk from 'chalk';
 
 import { Git } from '../git.js';
 import { process } from '../node.js';
-import { defaultConfig, type Config, type PartialConfig } from './ref.js';
+import { configValidator, type Config, type PartialConfig } from './ref.js';
 
 export const CONFIG_FILENAME = 'gw.config.json';
 
@@ -35,23 +39,27 @@ export const getConfigPath = (): string => {
 export const getPartialConfig = (): PartialConfig => {
 	const path = getConfigPath();
 
-	if (!existsSync(path)) {
-		return defaultConfig;
+	const { data, error } = tryCatchSync(() => {
+		if (!existsSync(path)) {
+			return {};
+		}
+
+		return JSON.parse(readFileSync(path, 'utf-8')) as PartialConfig;
+	});
+
+	const validation = configValidator.safeParse(data);
+
+	if (error || data === null || !validation.success) {
+		console.log(chalk.redBright('Cannot parse Gw config'));
+
+		exit(1);
 	}
 
-	return JSON.parse(readFileSync(path, 'utf-8')) as PartialConfig;
+	return data;
 };
 
 export const getConfig = (): Config => {
-	const partialConfig = getPartialConfig();
-
-	return {
-		...partialConfig,
-		...defaultConfig,
-		worktrees: {
-			dir: partialConfig.worktrees?.dir ?? defaultConfig.worktrees.dir,
-		},
-	};
+	return configValidator.safeParse(getPartialConfig()).data as Config;
 };
 
 export * from './ref.js';
