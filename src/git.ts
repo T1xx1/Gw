@@ -1,8 +1,6 @@
 import { execSync } from 'node:child_process';
-import { exit } from 'node:process';
 
 import { tryCatchSync } from '@t1xx1/tsfix';
-import chalk from 'chalk';
 
 import { panic } from './panic.js';
 
