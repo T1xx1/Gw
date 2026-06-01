@@ -53,6 +53,12 @@ export namespace Git {
 
 	/*  */
 
+	export const getGraph = (): string => {
+		return exec('git -c color.ui=always log --all --graph --decorate --oneline', 'MPR0EM1AJ0');
+	};
+
+	/*  */
+
 	export const getCurrBranch = (): string => {
 		return exec('git rev-parse --abbrev-ref HEAD', 'MPRBX7LBVW');
 	};
