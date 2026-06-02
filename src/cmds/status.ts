@@ -7,8 +7,16 @@ import { guard } from '../guard.js';
 export const _status = () => {
 	guard.isRepo();
 
+	const status = Git.getStatus();
+
+	if (status === '') {
+		console.log(chalk.grey('No changes'));
+
+		return;
+	}
+
 	console.log(
-		Git.getStatus()
+		status
 			.replaceAll('??', chalk.green('A'))
 			.replaceAll(' M', chalk.yellow('M'))
 			.replaceAll(' D', chalk.red('D')),
