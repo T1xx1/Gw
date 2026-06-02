@@ -8,6 +8,13 @@ export const _checkout = (name: string) => {
 	guard.isRepo();
 	guard.branchExists(name);
 
+	if (Git.getWorktreeBranches().includes(name)) {
+		console.log(chalk.grey(`Branch '${name}' is a worktree`));
+		console.log(chalk.grey(`Use >gw worktree checkout ${name} to checkout to the worktree`));
+
+		return;
+	}
+
 	Git.checkoutBranch(name);
 
 	console.log(chalk.green(`Checked out to branch '${name}'`));
