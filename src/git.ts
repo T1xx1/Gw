@@ -55,7 +55,7 @@ export namespace Git {
 
 	export const getStatus = (): string => {
 		return exec('git status --porcelain', 'MPVR0YXKHK');
-	}
+	};
 
 	/*  */
 
@@ -92,7 +92,7 @@ export namespace Git {
 	/*  */
 
 	export const getWorktreeBranches = () => {
-		const chunks = exec('git worktree list --porcelain', 'MPPD6WR9TK').split('\n');
+		const chunks = exec('git worktree list --porcelain', 'MPPD6WR9TK').split('\n\n');
 
 		return chunks.map((line) => {
 			return line.split('\n')[2].split('/').at(-1)!;
