@@ -15,8 +15,9 @@ export const _information = () => {
 		.join('\n');
 
 	console.log(chalk.blueBright(`${packageJson.name}  ${packageJson.version}`));
-	console.log(chalk.hex(colors.git)(`git ${Git.getVersion()}`));
-	console.log('\nDependencies:');
+	console.log(chalk.hex(colors.git)(`git ${Git.getVersion()}\n`));
+
+	console.log('Dependencies:');
 	console.log(gwDeps);
 };
 
