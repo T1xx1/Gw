@@ -7,6 +7,7 @@ import { guard } from '../../guard.js';
 
 export const _delete = (name: string) => {
 	guard.isRepo();
+	Git.pruneWorktrees();
 
 	const config = getConfig();
 

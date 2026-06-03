@@ -5,6 +5,7 @@ import { styleBranch } from '../branch/_index.js';
 
 export const _list = () => {
 	guard.isRepo();
+	Git.pruneWorktrees();
 
 	const currBranch = Git.getCurrBranch();
 	const branches = Git.getBranches();

@@ -9,6 +9,7 @@ import { guard } from '../../guard.js';
 
 export const _open = (name: string) => {
 	guard.isRepo();
+	Git.pruneWorktrees();
 	guard.branchExists(name);
 
 	const worktrees = Git.getWorktrees();
