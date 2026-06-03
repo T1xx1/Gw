@@ -25,7 +25,7 @@ export const _deinit = async () => {
 		return;
 	}
 
-	rmSync(join(Git.getRepoRoot(), '.git'), {
+	rmSync(join(Git.getCurrWorktreeRoot(), '.git'), {
 		force: true,
 		recursive: true,
 	});

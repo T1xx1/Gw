@@ -47,10 +47,6 @@ export namespace Git {
 		exec('git init', 'MPR0RFFAYO');
 	};
 
-	export const getRepoRoot = (): string => {
-		return exec('git rev-parse --show-toplevel', 'MPRC29HLJI');
-	};
-
 	/*  */
 
 	export const getStatus = (): string => {
@@ -90,6 +86,10 @@ export namespace Git {
 	};
 
 	/*  */
+
+	export const getCurrWorktreeRoot = (): string => {
+		return exec('git rev-parse --show-toplevel', 'MPRC29HLJI');
+	};
 
 	export const getWorktreeBranches = () => {
 		const chunks = exec('git worktree list --porcelain', 'MPPD6WR9TK').split('\n\n');

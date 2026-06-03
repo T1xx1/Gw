@@ -13,7 +13,7 @@ export const CONFIG_FILENAME = 'gw.config.json';
 
 export const getConfigPath = (): string => {
 	if (Git.isRepo()) {
-		return join(Git.getRepoRoot(), CONFIG_FILENAME);
+		return join(Git.getCurrWorktreeRoot(), CONFIG_FILENAME);
 	}
 
 	let currDir = process.cwd();
