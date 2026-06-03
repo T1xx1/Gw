@@ -62,7 +62,7 @@ export namespace Git {
 	/*  */
 
 	export const getCurrBranch = (): string => {
-		return exec('git rev-parse --abbrev-ref HEAD', 'MPRBX7LBVW');
+		return exec('git branch --show-current', 'MPRBX7LBVW');
 	};
 
 	export const getBranches = (): string[] => {
