@@ -2,11 +2,11 @@ import chalk from 'chalk';
 import { Command } from 'commander';
 
 import {
+	bindings,
 	branch,
 	config,
 	deinit,
 	graph,
-	information,
 	init,
 	status,
 	version,
@@ -29,7 +29,7 @@ const shell = new Command(PACKAGE_JSON.name)
 	});
 
 shell.addCommand(version);
-shell.addCommand(information);
+shell.addCommand(bindings);
 
 /* */
 

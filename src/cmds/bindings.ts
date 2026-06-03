@@ -5,7 +5,7 @@ import { colors } from '../color.js';
 import { Git } from '../git.js';
 import { getPackageJson } from '../package.js';
 
-export const _information = () => {
+export const _bindings = () => {
 	const packageJson = getPackageJson();
 
 	const gwDeps = Object.entries(packageJson.dependencies)
@@ -21,8 +21,8 @@ export const _information = () => {
 	console.log(gwDeps);
 };
 
-export const information = Cmd('information')
-	.alias('info')
+export const bindings = Cmd('bindings')
+	.alias('binds')
 	.alias('i')
-	.description('print information')
-	.action(_information);
+	.description('print bindings')
+	.action(_bindings);
