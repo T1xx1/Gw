@@ -11,6 +11,8 @@ export const _graph = (opts: { limit: `${number}` }) => {
 
 	if (limit < -1 || limit === 0) {
 		console.log(chalk.redBright('`limit` must be -1 or greater than 0'));
+
+		return;
 	}
 
 	if (limit === -1) {
