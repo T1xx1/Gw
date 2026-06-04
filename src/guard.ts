@@ -1,4 +1,4 @@
-import { exit } from 'node:process';
+import { cwd, exit } from 'node:process';
 
 import chalk from 'chalk';
 
@@ -10,7 +10,7 @@ export const guard = {
 			return;
 		}
 
-		console.log(chalk.redBright(`${process.cwd()} is not a Git repo`));
+		console.log(chalk.redBright(`${cwd()} is not a Git repo`));
 
 		exit(0);
 	},
