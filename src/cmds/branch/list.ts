@@ -9,8 +9,6 @@ import { styleBranch } from './_index.js';
 export const _list = () => {
 	guard.isRepo(Git.isRepo());
 
-	const config = getConfig();
-	const currBranch = Git.getCurrBranch();
 	const branches = Git.getBranches();
 
 	if (branches.length === 0) {
@@ -18,6 +16,9 @@ export const _list = () => {
 
 		return;
 	}
+
+	const config = getConfig();
+	const currBranch = Git.getCurrBranch();
 
 	for (const branch of branches) {
 		console.log(styleBranch(branch, config.branches.mainBranch, currBranch));
