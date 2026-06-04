@@ -6,7 +6,7 @@ import { getPartialConfig } from '../../config/_index.js';
 export const _get = (key: string) => {
 	const parts = key.split('.');
 
-	let partialConfig = getPartialConfig();
+	let partialConfig: any = getPartialConfig();
 
 	for (const part of parts) {
 		if (!partialConfig[part]) {
