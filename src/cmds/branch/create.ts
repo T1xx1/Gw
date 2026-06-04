@@ -5,7 +5,7 @@ import { Git } from '../../git.js';
 import { guard } from '../../guard.js';
 
 export const _create = (name: string) => {
-	guard.isRepo();
+	guard.isRepo(Git.isRepo());
 
 	if (Git.getBranches().includes(name)) {
 		console.log(chalk.grey(`Branch '${name}' already exists`));

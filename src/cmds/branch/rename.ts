@@ -5,8 +5,8 @@ import { Git } from '../../git.js';
 import { guard } from '../../guard.js';
 
 export const _rename = (name: string, newName: string) => {
-	guard.isRepo();
-	guard.branchExists(name);
+	guard.isRepo(Git.isRepo());
+	guard.branchExists(Git.getBranches(), name);
 
 	Git.renameBranch(name, newName);
 

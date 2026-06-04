@@ -5,7 +5,7 @@ import { Git } from '../git.js';
 import { guard } from '../guard.js';
 
 export const _graph = (opts: { limit: `${number}` }) => {
-	guard.isRepo();
+	guard.isRepo(Git.isRepo());
 
 	const limit = parseInt(opts.limit);
 

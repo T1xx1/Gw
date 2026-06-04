@@ -8,7 +8,7 @@ import { guard } from '../../guard.js';
 import { getConfig } from '../../config/_index.js';
 
 export const _create = (name: string) => {
-	guard.isRepo();
+	guard.isRepo(Git.isRepo());
 	Git.pruneWorktrees();
 
 	const branches = Git.getBranches();

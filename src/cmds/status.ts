@@ -7,7 +7,7 @@ import { guard } from '../guard.js';
 import { styleBranch } from './branch/_index.js';
 
 export const _status = () => {
-	guard.isRepo();
+	guard.isRepo(Git.isRepo());
 
 	const config = getConfig();
 	const currBranch = Git.getCurrBranch();

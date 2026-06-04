@@ -2,11 +2,9 @@ import { cwd, exit } from 'node:process';
 
 import chalk from 'chalk';
 
-import { Git } from './git.js';
-
 export const guard = {
-	isRepo: () => {
-		if (Git.isRepo()) {
+	isRepo: (isRepo: boolean) => {
+		if (isRepo) {
 			return;
 		}
 
@@ -14,8 +12,8 @@ export const guard = {
 
 		exit(0);
 	},
-	branchExists: (name: string) => {
-		if (Git.getBranches().includes(name)) {
+	branchExists: (branches: string[], name: string) => {
+		if (branches.includes(name)) {
 			return;
 		}
 
