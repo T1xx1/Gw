@@ -1,5 +1,6 @@
 import chalk from 'chalk';
 
+import { getConfig } from '../../config/_index.js';
 import { Cmd } from '../../cmd.js';
 import { Git } from '../../git.js';
 import { guard } from '../../guard.js';
@@ -8,6 +9,14 @@ export const _close = (name: string) => {
 	guard.isRepo(Git.isRepo());
 	Git.pruneWorktrees();
 	guard.branchExists(Git.getBranches(), name);
+
+	const config = getConfig();
+
+	if (name === config.branches.mainBranch) {
+		console.log(chalk.redBright('The main worktree cannot be closed'));
+
+		return;
+	}
 
 	const worktrees = Git.getWorktrees();
 
