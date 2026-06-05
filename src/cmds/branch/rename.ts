@@ -8,8 +8,8 @@ import { Git } from '../../git.js';
 import { guard } from '../../guard.js';
 
 export const _rename = (name: string, newName: string) => {
-	guard.isRepo(Git.isRepo());
-	guard.branchExists(Git.getBranches(), name);
+	guard.isRepo();
+	guard.branchExists(name);
 
 	if (name === newName) {
 		console.log(chalk.redBright('The new name must be different than the previous'));

@@ -6,7 +6,7 @@ import { Git } from '../../git.js';
 import { guard } from '../../guard.js';
 
 export const _delete = (name: string) => {
-	guard.isRepo(Git.isRepo());
+	guard.isRepo();
 	Git.pruneWorktrees();
 
 	const config = getConfig();
@@ -17,7 +17,7 @@ export const _delete = (name: string) => {
 		return;
 	}
 
-	guard.branchExists(Git.getBranches(), name);
+	guard.branchExists(name);
 
 	const worktrees = Git.getWorktrees();
 

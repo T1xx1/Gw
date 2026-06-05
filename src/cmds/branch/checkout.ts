@@ -5,8 +5,8 @@ import { Git } from '../../git.js';
 import { guard } from '../../guard.js';
 
 export const _checkout = (name: string) => {
-	guard.isRepo(Git.isRepo());
-	guard.branchExists(Git.getBranches(), name);
+	guard.isRepo();
+	guard.branchExists(name);
 
 	if (Git.getWorktreeBranches().includes(name)) {
 		console.log(chalk.grey(`Branch '${name}' is a worktree`));
