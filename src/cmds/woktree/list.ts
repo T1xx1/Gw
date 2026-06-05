@@ -8,8 +8,8 @@ export const _list = () => {
 	Git.pruneWorktrees();
 
 	const currBranch = Git.getCurrBranch();
-	const branches = Git.getBranches();
 	const worktrees = Git.getWorktrees();
+	const branches = Object.keys(worktrees);
 
 	const longestBranch = Math.max(
 		...branches.map((branch) => {
