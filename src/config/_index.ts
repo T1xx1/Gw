@@ -36,15 +36,13 @@ export const getConfigPath = (): string => {
 	}
 };
 
-export const getPartialConfig = (): PartialConfig => {
-	const path = getConfigPath();
-
+export const getPartialConfig = (configPath: string = getConfigPath()): PartialConfig => {
 	const { data, error } = tryCatchSync(() => {
-		if (!existsSync(path)) {
+		if (!existsSync(configPath)) {
 			return {};
 		}
 
-		return JSON.parse(readFileSync(path, 'utf-8')) as PartialConfig;
+		return JSON.parse(readFileSync(configPath, 'utf-8')) as PartialConfig;
 	});
 
 	const validation = configValidator.safeParse(data);
@@ -58,8 +56,8 @@ export const getPartialConfig = (): PartialConfig => {
 	return data;
 };
 
-export const getConfig = (): Config => {
-	return configValidator.safeParse(getPartialConfig()).data as Config;
+export const getConfig = (partialConfig: PartialConfig = getPartialConfig()): Config => {
+	return configValidator.safeParse(partialConfig).data as Config;
 };
 
 export * from './ref.js';

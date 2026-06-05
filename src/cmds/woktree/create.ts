@@ -3,9 +3,9 @@ import { join } from 'node:path/posix';
 import chalk from 'chalk';
 
 import { Cmd } from '../../cmd.js';
+import { getConfig } from '../../config/_index.js';
 import { Git } from '../../git.js';
 import { guard } from '../../guard.js';
-import { getConfig } from '../../config/_index.js';
 
 export const _create = (name: string) => {
 	guard.isRepo();

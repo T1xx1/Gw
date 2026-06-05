@@ -19,11 +19,11 @@ export const _rename = (name: string, newName: string) => {
 
 	Git.renameBranch(name, newName);
 
-	const config = getConfig();
+	const configPath = getConfigPath();
+	const partialConfig = getPartialConfig();
+	const config = getConfig(partialConfig);
 
 	if (name === config.branches.mainBranch) {
-		const partialConfig = getPartialConfig();
-
 		if (!partialConfig.branches) {
 			partialConfig.branches = {};
 		}
@@ -32,7 +32,7 @@ export const _rename = (name: string, newName: string) => {
 			partialConfig.branches.mainBranch = newName;
 		}
 
-		writeFileSync(getConfigPath(), JSON.stringify(partialConfig, null, '\t'));
+		writeFileSync(configPath, JSON.stringify(partialConfig, null, '\t'));
 	}
 
 	console.log(chalk.green(`Branch '${name}' renamed to '${newName}'`));

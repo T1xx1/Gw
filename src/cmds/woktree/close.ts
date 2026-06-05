@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 
-import { getConfig } from '../../config/_index.js';
 import { Cmd } from '../../cmd.js';
+import { getConfig } from '../../config/_index.js';
 import { Git } from '../../git.js';
 import { guard } from '../../guard.js';
 
