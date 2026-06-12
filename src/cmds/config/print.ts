@@ -5,4 +5,4 @@ export const _print = () => {
 	console.log(getPartialConfig());
 };
 
-export const print = Cmd('print').alias('view').description('print Gw config').action(_print);
+export const print = Cmd('print').alias('view').description('print the Gw config').action(_print);
