@@ -57,7 +57,7 @@ export const getPartialConfig = (configPath: string = getConfigPath()): PartialC
 };
 
 export const getConfig = (partialConfig: PartialConfig = getPartialConfig()): Config => {
-	return configValidator.safeParse(partialConfig).data as Config;
+	return configValidator.safeParse(partialConfig).data as unknown as Config;
 };
 
 export * from './ref.js';
