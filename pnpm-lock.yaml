@@ -25,8 +25,8 @@ importers:
         specifier: ^2.4.16
         version: 2.4.16
       '@t1xx1/tsfix':
-        specifier: ^1.1.0
-        version: 1.1.0
+        specifier: ^1.1.1
+        version: 1.1.1
       '@types/node':
         specifier: ^25.9.1
         version: 25.9.1
@@ -101,8 +101,8 @@ packages:
     resolution: {integrity: sha512-S0My7XPGIgpRWMDG8uRqalbgT+a6FmCUdOW+HaIOVVpUPHOb7RrpvjTjiODadKp06fsrVDJZlIzc6yCTp4AnxA==}
     engines: {node: '>= 20.12.0'}
 
-  '@t1xx1/tsfix@1.1.0':
-    resolution: {integrity: sha512-oqdTsx5DVpw6qjG78M89elRivHXuH1uOqS3GGWghCUAR2dv7ig9fl16OtadOtuqXOD6/waQN2CnsmpM34h9tpQ==}
+  '@t1xx1/tsfix@1.1.1':
+    resolution: {integrity: sha512-UhpOjhDf/37HCQ1A33LHbzmizs2Ohtg6YWtighMqRgkL7ITLNL1aZeIXJjgpr/Ax184iBdwaqj5S6SCs7jlQdA==}
     engines: {node: '>=24'}
 
   '@types/node@25.9.1':
@@ -188,7 +188,7 @@ snapshots:
       fast-wrap-ansi: 0.2.2
       sisteransi: 1.0.5
 
-  '@t1xx1/tsfix@1.1.0': {}
+  '@t1xx1/tsfix@1.1.1': {}
 
   '@types/node@25.9.1':
     dependencies:
