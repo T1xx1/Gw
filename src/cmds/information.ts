@@ -1,0 +1,41 @@
+import { Cmd } from '../cmd.js';
+import { getConfig } from '../config/_index.js';
+import { Git } from '../git.js';
+import { guard } from '../guard.js';
+import { styleBranch } from './branch/_index.js';
+import { _list } from './woktree/list.js';
+
+export const _information = () => {
+	guard.isRepo();
+
+	const config = getConfig();
+	const currBranch = Git.getCurrBranch();
+	const worktrees = Git.getWorktrees();
+	const branches = Object.keys(worktrees);
+	const repoName = worktrees[config.branches.mainBranch].split('/').at(-1)!;
+
+	console.log(`${repoName} ⌥ ${styleBranch(currBranch, config.branches.mainBranch, currBranch)}\n`);
+	console.log('Worktrees:');
+
+	const longestBranch = Math.max(
+		...branches.map((branch) => {
+			return branch.length;
+		}),
+	);
+
+	for (const branch of branches) {
+		const styledBranch = styleBranch(branch, currBranch, currBranch);
+		const spacing = ' '.repeat(longestBranch - branch.length);
+
+		if (worktrees[branch]) {
+			console.log(`${styledBranch}${spacing} ${worktrees[branch]}`);
+		} else {
+			console.log(styledBranch);
+		}
+	}
+};
+
+export const information = Cmd('information')
+	.alias('info')
+	.description('print information')
+	.action(_information);

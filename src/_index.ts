@@ -7,6 +7,7 @@ import {
 	config,
 	deinit,
 	graph,
+	information,
 	init,
 	status,
 	version,
@@ -38,6 +39,7 @@ shell
 	.addCommand(config)
 	.addCommand(deinit)
 	.addCommand(graph)
+	.addCommand(information)
 	.addCommand(init)
 	.addCommand(status)
 	.addCommand(worktree);
