@@ -11,17 +11,17 @@ import { _deinit as _configDeinit } from './config/deinit.js';
 export const _deinit = async () => {
 	await _configDeinit();
 
+	if (!Git.isRepo()) {
+		console.log(chalk.grey('No Git repo to deinitialize'));
+
+		return;
+	}
+
 	if (
 		!(await confirm({
 			message: 'Are you sure you want to deinitialize the Git repo?',
 		}))
 	) {
-		return;
-	}
-
-	if (!Git.isRepo()) {
-		console.log(chalk.grey('No Git repo to deinitialize'));
-
 		return;
 	}
 
