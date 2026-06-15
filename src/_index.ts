@@ -6,10 +6,8 @@ import {
 	bindings,
 	branch,
 	config,
-	deinit,
 	graph,
-	information,
-	init,
+	repository,
 	status,
 	submodule,
 	version,
@@ -36,10 +34,8 @@ shell.addCommand(bindings);
 shell
 	.addCommand(branch)
 	.addCommand(config)
-	.addCommand(deinit)
 	.addCommand(graph)
-	.addCommand(information)
-	.addCommand(init)
+	.addCommand(repository)
 	.addCommand(status)
 	.addCommand(submodule)
 	.addCommand(worktree);

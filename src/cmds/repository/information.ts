@@ -1,16 +1,16 @@
-import { Cmd } from '../cmd.js';
-import { getConfig } from '../config/_index.js';
-import { Git } from '../git.js';
-import { guard } from '../guard.js';
-import { styleBranch } from './branch/_index.js';
-import { _list } from './worktree/list.js';
+import { Cmd } from '../../cmd.js';
+import { getConfig } from '../../config/_index.js';
+import { Git } from '../../git.js';
+import { guard } from '../../guard.js';
+import { styleBranch } from '../branch/_index.js';
+import { _list } from '../worktree/list.js';
 
 export const _information = (): void => {
 	guard.isRepo();
 
 	const config = getConfig();
 	const currBranch = Git.branch.getCurr();
-	const worktrees = Git.getWorktrees();
+	const worktrees = Git.worktree.getAll();
 	const branches = Object.keys(worktrees);
 	const repoName = worktrees[config.branches.mainBranch].split('/').at(-1)!;
 

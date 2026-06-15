@@ -3,9 +3,9 @@ import { rmSync } from 'node:fs';
 import { confirm } from '@clack/prompts';
 import chalk from 'chalk';
 
-import { Cmd } from '../cmd.js';
-import { Git } from '../git.js';
-import { _deinit as _configDeinit } from './config/deinit.js';
+import { Cmd } from '../../cmd.js';
+import { Git } from '../../git.js';
+import { _deinit as _configDeinit } from '../config/deinit.js';
 
 export const _deinit = async (): Promise<void> => {
 	await _configDeinit();

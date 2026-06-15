@@ -1,10 +1,8 @@
 export { bindings } from './bindings.js';
 export { branch } from './branch/_index.js';
 export { config } from './config/_index.js';
-export { deinit } from './deinit.js';
 export { graph } from './graph.js';
-export { information } from './information.js';
-export { init } from './init.js';
+export { repository } from './repository/_index.js';
 export { status } from './status.js';
 export { submodule } from './submodule/_index.js';
 export { version } from './version.js';
