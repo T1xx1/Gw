@@ -25,9 +25,13 @@ export const _status = () => {
 	console.log(
 		status
 			.replaceAll('??', chalk.green('A'))
+			.replaceAll('?? ', chalk.green('A'))
+			.replaceAll(' A', chalk.green('A'))
 			.replaceAll('A ', chalk.green('A'))
 			.replaceAll(' M', chalk.yellow('M'))
-			.replaceAll(' D', chalk.red('D')),
+			.replaceAll('M ', chalk.yellow('M'))
+			.replaceAll(' D', chalk.red('D'))
+			.replaceAll('D ', chalk.red('D')),
 	);
 };
 
