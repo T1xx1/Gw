@@ -14,12 +14,30 @@ export const guard = {
 
 		exit(0);
 	},
+	noChanges: (status: string = Git.getStatus()) => {
+		if (status === '') {
+			return;
+		}
+
+		console.log(chalk.redBright("Can't install/uninstall submodules with uncommitted changes"));
+
+		exit(0);
+	},
 	branchExists: (name: string, branches: string[] = Git.getBranches()) => {
 		if (branches.includes(name)) {
 			return;
 		}
 
 		console.log(chalk.redBright(`Branch '${name}' does not exist`));
+
+		exit(0);
+	},
+	submoduleExists: (name: string, submodulesConfig: Git.submodule.Config) => {
+		if (`submodule "${name}"` in submodulesConfig) {
+			return;
+		}
+
+		console.log(chalk.redBright(`Submodule '${name}' does not exist`));
 
 		exit(0);
 	},

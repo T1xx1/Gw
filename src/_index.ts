@@ -10,6 +10,7 @@ import {
 	information,
 	init,
 	status,
+	submodule,
 	version,
 	worktree,
 } from './cmds/_index.js';
@@ -42,6 +43,7 @@ shell
 	.addCommand(information)
 	.addCommand(init)
 	.addCommand(status)
+	.addCommand(submodule)
 	.addCommand(worktree);
 
 /* */

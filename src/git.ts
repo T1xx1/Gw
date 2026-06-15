@@ -1,6 +1,9 @@
 import { execSync } from 'node:child_process';
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 
 import { tryCatchSync } from '@t1xx1/tsfix';
+import { parse } from 'ini';
 
 import { panic } from './panic.js';
 
@@ -57,6 +60,10 @@ export namespace Git {
 
 	export const getGraph = (): string => {
 		return exec('git -c color.ui=always log --all --graph --decorate --oneline', 'MPR0EM1AJ0');
+	};
+
+	export const stageAll = (): void => {
+		exec('git add --all', 'MPR0EM1AJ0');
 	};
 
 	/*  */
@@ -122,4 +129,51 @@ export namespace Git {
 	export const deleteWorktree = (path: string): void => {
 		exec(`git worktree remove --force ${path}`, 'MPTMRPSDDV');
 	};
+
+	/*  */
+
+	export namespace submodule {
+		export const getSubmodulesConfigPath = (dir: string = getCurrWorktreeRoot()): string => {
+			return join(dir, '.gitmodules');
+		};
+
+		export type Config = {
+			[submodule: string]: {
+				path: string;
+				url: string;
+				branch?: string;
+			};
+		};
+
+		export const getSubmodulesConfig = (
+			submodulesConfigPath: string = getSubmodulesConfigPath(),
+		): Config => {
+			if (!existsSync(submodulesConfigPath)) {
+				return {};
+			}
+
+			return parse(readFileSync(submodulesConfigPath, 'utf-8'));
+		};
+
+		/*  */
+
+		export const getStatus = (): string => {
+			return exec(
+				'git submodule foreach --quiet "echo $name && git branch --show-current"',
+				'MQC6N3XDML',
+			);
+		};
+
+		export const add = (url: string, path: string = '.'): void => {
+			if (path === '.') {
+				exec(`git submodule add -f ${url}`, 'MQE11E833S');
+			} else {
+				exec(`git submodule add -f ${url} ${path}`, 'MQC5MQHT4M');
+			}
+		};
+
+		export const deinit = (path: string): void => {
+			exec(`git submodule deinit -f ${path}`, 'MQCQEMJUMH');
+		};
+	}
 }

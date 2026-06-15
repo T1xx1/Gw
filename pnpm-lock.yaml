@@ -17,6 +17,9 @@ importers:
       commander:
         specifier: ^14.0.3
         version: 14.0.3
+      ini:
+        specifier: ^7.0.0
+        version: 7.0.0
       zod:
         specifier: ^4.4.3
         version: 4.4.3
@@ -27,6 +30,9 @@ importers:
       '@t1xx1/tsfix':
         specifier: ^1.1.1
         version: 1.1.1
+      '@types/ini':
+        specifier: ^4.1.1
+        version: 4.1.1
       '@types/node':
         specifier: ^25.9.1
         version: 25.9.1
@@ -105,6 +111,9 @@ packages:
     resolution: {integrity: sha512-UhpOjhDf/37HCQ1A33LHbzmizs2Ohtg6YWtighMqRgkL7ITLNL1aZeIXJjgpr/Ax184iBdwaqj5S6SCs7jlQdA==}
     engines: {node: '>=24'}
 
+  '@types/ini@4.1.1':
+    resolution: {integrity: sha512-MIyNUZipBTbyUNnhvuXJTY7B6qNI78meck9Jbv3wk0OgNwRyOOVEKDutAkOs1snB/tx0FafyR6/SN4Ps0hZPeg==}
+
   '@types/node@25.9.1':
     resolution: {integrity: sha512-xfrlY7UD5rMJk3ZVJP8BNzS28J36YJg+xp+LPXV1TdWxr8uMH5A860QNxYDGQe/ylDSgjxE52Q9VnO7p75tJxg==}
 
@@ -124,6 +133,10 @@ packages:
 
   fast-wrap-ansi@0.2.2:
     resolution: {integrity: sha512-7F2Fl+TjRSenLqlU3UjSH0iyqopqoZIu7eZVpEirP2g1GtWa2G/ecEmBdgz31+Mxr+ELclgg6sokpSFIQiZ02Q==}
+
+  ini@7.0.0:
+    resolution: {integrity: sha512-ifK0CgjALofS5bkrcTy4RaQ9Vx2Knf/eLeIO+NaswQEpH1UblrtTSCIvN71qQDMq0PeQ/SSPojvEJp9vvvfr+w==}
+    engines: {node: ^22.22.2 || ^24.15.0 || >=26.0.0}
 
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
@@ -190,6 +203,8 @@ snapshots:
 
   '@t1xx1/tsfix@1.1.1': {}
 
+  '@types/ini@4.1.1': {}
+
   '@types/node@25.9.1':
     dependencies:
       undici-types: 7.24.6
@@ -207,6 +222,8 @@ snapshots:
   fast-wrap-ansi@0.2.2:
     dependencies:
       fast-string-width: 3.0.2
+
+  ini@7.0.0: {}
 
   sisteransi@1.0.5: {}
 
