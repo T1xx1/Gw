@@ -1,3 +1,5 @@
+import chalk from 'chalk';
+
 import { Cmd } from '../../cmd.js';
 import { getConfig } from '../../config/_index.js';
 import { Git } from '../../git.js';
@@ -12,10 +14,24 @@ export const _information = (): void => {
 	const currBranch = Git.branch.getCurr();
 	const worktrees = Git.worktree.getAll();
 	const branches = Object.keys(worktrees);
+	const submoduleStatus = Git.submodule.getStatus();
 	const repoName = worktrees[config.branches.mainBranch].split('/').at(-1)!;
 
-	console.log(`${repoName} ⌥ ${styleBranch(currBranch, config.branches.mainBranch, currBranch)}\n`);
-	console.log('Worktrees:');
+	console.log(`${repoName} ⌥ ${styleBranch(currBranch, config.branches.mainBranch, currBranch)}`);
+
+	/*  */
+
+	console.log('\nSubmodules:');
+
+	for (const line of submoduleStatus) {
+		const [name, branch] = line.split('\n');
+
+		console.log(`${chalk.blueBright(name)}${chalk.grey(`@${branch}`)}`);
+	}
+
+	/*  */
+
+	console.log('\nWorktrees:');
 
 	const longestBranch = Math.max(
 		...branches.map((branch) => {

@@ -9,17 +9,14 @@ export const _list = (): void => {
 
 	const status = Git.submodule.getStatus();
 
-	if (status === '') {
+	if (status.length === 0) {
 		console.log(chalk.grey('No submodules'));
 
 		return;
 	}
 
-	const parts = status.split('\n');
-
-	for (let i = 0; i < parts.length; i = i + 2) {
-		const name = parts[i];
-		const branch = parts[i + 1];
+	for (const line of status) {
+		const [name, branch] = line.split('\n');
 
 		console.log(`${chalk.blueBright(name)}${chalk.grey(`@${branch}`)}`);
 	}

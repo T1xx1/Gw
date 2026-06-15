@@ -162,11 +162,11 @@ export namespace Git {
 
 		/*  */
 
-		export const getStatus = (): string => {
+		export const getStatus = (): string[] => {
 			return execPanic(
 				'git submodule foreach --quiet "echo $name && git branch --show-current"',
 				'MQC6N3XDML',
-			);
+			).split('\n\n');
 		};
 
 		export const add = (url: string, path: string = '.'): void => {
