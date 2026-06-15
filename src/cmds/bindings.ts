@@ -1,24 +1,13 @@
 import chalk from 'chalk';
 
+import packageJson from '../../package.json' with { type: 'json' };
 import { Cmd } from '../cmd.js';
 import { colors } from '../color.js';
 import { Git } from '../git.js';
-import { getPackageJson } from '../package.js';
 
 export const _bindings = (): void => {
-	const packageJson = getPackageJson();
-
-	const gwDeps = Object.entries(packageJson.dependencies)
-		.map(([name, version]) => {
-			return `${name} ${version.replace(/^\^/, '')}`;
-		})
-		.join('\n');
-
-	console.log(chalk.blueBright(`${packageJson.name}  ${packageJson.version}`));
-	console.log(chalk.hex(colors.git)(`git ${Git.getVersion()}\n`));
-
-	console.log('Dependencies:');
-	console.log(gwDeps);
+	console.log(chalk.blueBright(`gw  ${packageJson.version}`));
+	console.log(chalk.hex(colors.git)(`git ${Git.getVersion()}`));
 };
 
 export const bindings = Cmd('bindings')

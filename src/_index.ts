@@ -1,6 +1,7 @@
 import chalk from 'chalk';
 import { Command } from 'commander';
 
+import packageJson from '../package.json' with { type: 'json' };
 import {
 	bindings,
 	branch,
@@ -14,12 +15,9 @@ import {
 	version,
 	worktree,
 } from './cmds/_index.js';
-import { getPackageJson } from './package.js';
 
-const PACKAGE_JSON = getPackageJson();
-
-const shell = new Command(PACKAGE_JSON.name)
-	.version(PACKAGE_JSON.version, '--version, -v', 'print version')
+const shell = new Command(packageJson.name)
+	.version(packageJson.version, '--version, -v', 'print version')
 	.helpOption('--help, -h', 'print help')
 	.helpCommand('help [command]', 'print help')
 	.configureOutput({

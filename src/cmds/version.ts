@@ -1,10 +1,12 @@
+import packageJson from '../../package.json' with { type: 'json' };
 import { Cmd } from '../cmd.js';
-import { getPackageJson } from '../package.js';
 
 export const _version = (): void => {
-	const packageJson = getPackageJson();
-
 	console.log(packageJson.version);
 };
 
-export const version = Cmd('version').alias('v').description('print version').action(_version);
+export const version = Cmd('version')
+	.alias('v')
+	.description('print version')
+	.option('--binds', 'print bindings')
+	.action(_version);
