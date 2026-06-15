@@ -11,6 +11,9 @@ importers:
       '@clack/prompts':
         specifier: ^1.4.0
         version: 1.4.0
+      '@t1xx1/tsfix':
+        specifier: ^1.1.1
+        version: 1.1.1
       chalk:
         specifier: ^5.6.2
         version: 5.6.2
@@ -27,9 +30,6 @@ importers:
       '@biomejs/biome':
         specifier: ^2.4.16
         version: 2.4.16
-      '@t1xx1/tsfix':
-        specifier: ^1.1.1
-        version: 1.1.1
       '@types/ini':
         specifier: ^4.1.1
         version: 4.1.1
