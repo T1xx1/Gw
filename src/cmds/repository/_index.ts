@@ -8,4 +8,6 @@ export const repository = Cmd('repository')
 	.description('...')
 	.addCommand(deinit)
 	.addCommand(init)
-	.addCommand(information);
+	.addCommand(information, {
+		isDefault: true,
+	});

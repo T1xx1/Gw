@@ -14,5 +14,7 @@ export const worktree = Cmd('worktree')
 	.addCommand(close)
 	.addCommand(create)
 	.addCommand(delete_)
-	.addCommand(list)
+	.addCommand(list, {
+		isDefault: true,
+	})
 	.addCommand(open);

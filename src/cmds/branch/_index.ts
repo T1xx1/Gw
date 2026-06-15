@@ -32,5 +32,7 @@ export const branch = Cmd('branch')
 	.addCommand(checkout)
 	.addCommand(create)
 	.addCommand(delete_)
-	.addCommand(list)
+	.addCommand(list, {
+		isDefault: true,
+	})
 	.addCommand(rename);

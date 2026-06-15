@@ -9,5 +9,7 @@ export const submodule = Cmd('submodule')
 	.alias('sr')
 	.description('...')
 	.addCommand(install)
-	.addCommand(list)
+	.addCommand(list, {
+		isDefault: true,
+	})
 	.addCommand(uninstall);
