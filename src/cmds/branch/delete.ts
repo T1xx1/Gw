@@ -5,7 +5,7 @@ import { getConfig } from '../../config/_index.js';
 import { Git } from '../../git.js';
 import { guard } from '../../guard.js';
 
-export const _delete = (name: string) => {
+export const _delete = (name: string): void => {
 	guard.isRepo();
 
 	const config = getConfig();

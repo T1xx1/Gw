@@ -4,7 +4,7 @@ import { Cmd } from '../cmd.js';
 import { Git } from '../git.js';
 import { _init as _configInit } from './config/init.js';
 
-export const _init = () => {
+export const _init = (): void => {
 	if (Git.isRepo()) {
 		console.log(chalk.grey('Git repo is already initialized'));
 

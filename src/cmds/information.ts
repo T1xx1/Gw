@@ -5,7 +5,7 @@ import { guard } from '../guard.js';
 import { styleBranch } from './branch/_index.js';
 import { _list } from './woktree/list.js';
 
-export const _information = () => {
+export const _information = (): void => {
 	guard.isRepo();
 
 	const config = getConfig();

@@ -1,7 +1,7 @@
 import { Cmd } from '../cmd.js';
 import { getPackageJson } from '../package.js';
 
-export const _version = () => {
+export const _version = (): void => {
 	const packageJson = getPackageJson();
 
 	console.log(packageJson.version);

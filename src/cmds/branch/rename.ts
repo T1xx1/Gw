@@ -7,7 +7,7 @@ import { Cmd } from '../../cmd.js';
 import { Git } from '../../git.js';
 import { guard } from '../../guard.js';
 
-export const _rename = (name: string, newName: string) => {
+export const _rename = (name: string, newName: string): void => {
 	guard.isRepo();
 	guard.branchExists(name);
 

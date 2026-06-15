@@ -4,7 +4,7 @@ import { Cmd } from '../cmd.js';
 import { Git } from '../git.js';
 import { guard } from '../guard.js';
 
-export const _graph = (opts: { limit: `${number}` }) => {
+export const _graph = (opts: { limit: `${number}` }): void => {
 	guard.isRepo();
 
 	const limit = parseInt(opts.limit);

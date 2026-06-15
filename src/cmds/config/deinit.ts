@@ -6,7 +6,7 @@ import chalk from 'chalk';
 import { Cmd } from '../../cmd.js';
 import { getConfigPath } from '../../config/_index.js';
 
-export const _deinit = async () => {
+export const _deinit = async (): Promise<void> => {
 	const configPath = getConfigPath();
 
 	if (!existsSync(configPath)) {

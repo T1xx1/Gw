@@ -6,7 +6,7 @@ import { Git } from '../../git.js';
 import { guard } from '../../guard.js';
 import { styleBranch } from './_index.js';
 
-export const _list = () => {
+export const _list = (): void => {
 	guard.isRepo();
 
 	const branches = Git.getBranches();

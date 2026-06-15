@@ -1,6 +1,6 @@
 import { Cmd } from '../../cmd.js';
 
-export const _set = () => {
+export const _set = (): void => {
 	/* TODO */
 };
 

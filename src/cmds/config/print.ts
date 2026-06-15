@@ -1,7 +1,7 @@
 import { Cmd } from '../../cmd.js';
 import { getPartialConfig } from '../../config/_index.js';
 
-export const _print = () => {
+export const _print = (): void => {
 	console.log(getPartialConfig());
 };
 

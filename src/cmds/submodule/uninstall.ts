@@ -7,7 +7,7 @@ import { Cmd } from '../../cmd.js';
 import { Git } from '../../git.js';
 import { guard } from '../../guard.js';
 
-export const _uninstall = (name: string) => {
+export const _uninstall = (name: string): void => {
 	guard.isRepo();
 	guard.noChanges();
 

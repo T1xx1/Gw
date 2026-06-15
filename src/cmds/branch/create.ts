@@ -4,7 +4,7 @@ import { Cmd } from '../../cmd.js';
 import { Git } from '../../git.js';
 import { guard } from '../../guard.js';
 
-export const _create = (name: string) => {
+export const _create = (name: string): void => {
 	guard.isRepo();
 
 	if (Git.getBranches().includes(name)) {

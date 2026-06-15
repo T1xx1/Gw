@@ -8,7 +8,7 @@ import { Cmd } from '../../cmd.js';
 import { Git } from '../../git.js';
 import { guard } from '../../guard.js';
 
-export const _install = (url: string) => {
+export const _install = (url: string): void => {
 	guard.isRepo();
 
 	if (!z.url().safeParse(url).success) {

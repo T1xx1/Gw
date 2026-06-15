@@ -7,7 +7,7 @@ import { getConfig } from '../../config/_index.js';
 import { Git } from '../../git.js';
 import { guard } from '../../guard.js';
 
-export const _open = (name: string) => {
+export const _open = (name: string): void => {
 	guard.isRepo();
 	Git.pruneWorktrees();
 	guard.branchExists(name);

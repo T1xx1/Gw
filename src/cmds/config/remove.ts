@@ -1,6 +1,6 @@
 import { Cmd } from '../../cmd.js';
 
-export const _remove = () => {
+export const _remove = (): void => {
 	/* TODO */
 };
 

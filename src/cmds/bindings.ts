@@ -5,7 +5,7 @@ import { colors } from '../color.js';
 import { Git } from '../git.js';
 import { getPackageJson } from '../package.js';
 
-export const _bindings = () => {
+export const _bindings = (): void => {
 	const packageJson = getPackageJson();
 
 	const gwDeps = Object.entries(packageJson.dependencies)

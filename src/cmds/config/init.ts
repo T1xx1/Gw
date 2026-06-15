@@ -5,7 +5,7 @@ import chalk from 'chalk';
 import { Cmd } from '../../cmd.js';
 import { getConfigPath, initialConfig } from '../../config/_index.js';
 
-export const _init = () => {
+export const _init = (): void => {
 	const configPath = getConfigPath();
 
 	if (existsSync(configPath)) {

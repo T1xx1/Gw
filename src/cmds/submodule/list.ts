@@ -4,7 +4,7 @@ import { Cmd } from '../../cmd.js';
 import { Git } from '../../git.js';
 import { guard } from '../../guard.js';
 
-export const _list = () => {
+export const _list = (): void => {
 	guard.isRepo();
 
 	const status = Git.submodule.getStatus();
