@@ -5,10 +5,10 @@ import { styleBranch } from '../branch/_index.js';
 
 export const _list = (): void => {
 	guard.isRepo();
-	Git.pruneWorktrees();
+	Git.worktree.prune();
 
-	const currBranch = Git.getCurrBranch();
-	const worktrees = Git.getWorktrees();
+	const currBranch = Git.branch.getCurr();
+	const worktrees = Git.worktree.getAll();
 	const branches = Object.keys(worktrees);
 
 	const longestBranch = Math.max(

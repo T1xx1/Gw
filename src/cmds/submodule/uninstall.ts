@@ -11,8 +11,8 @@ export const _uninstall = (name: string): void => {
 	guard.isRepo();
 	guard.noChanges();
 
-	const submodulesConfigPath = Git.submodule.getSubmodulesConfigPath();
-	const submodulesConfig = Git.submodule.getSubmodulesConfig(submodulesConfigPath);
+	const submodulesConfigPath = Git.submodule.getConfigPath();
+	const submodulesConfig = Git.submodule.getConfig(submodulesConfigPath);
 
 	guard.submoduleExists(name, submodulesConfig);
 

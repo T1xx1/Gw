@@ -25,7 +25,7 @@ export const _delete = (name: string): void => {
 		return;
 	}
 
-	Git.deleteBranch(name);
+	Git.branch.del(name);
 
 	console.log(chalk.green(`Branch '${name}' deleted`));
 };

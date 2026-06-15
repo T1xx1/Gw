@@ -9,7 +9,7 @@ import { styleBranch } from './_index.js';
 export const _list = (): void => {
 	guard.isRepo();
 
-	const branches = Git.getBranches();
+	const branches = Git.branch.getAll();
 
 	if (branches.length === 0) {
 		console.log(chalk.grey('No branches'));
@@ -18,7 +18,7 @@ export const _list = (): void => {
 	}
 
 	const config = getConfig();
-	const currBranch = Git.getCurrBranch();
+	const currBranch = Git.branch.getCurr();
 
 	for (const branch of branches) {
 		console.log(styleBranch(branch, config.branches.mainBranch, currBranch));

@@ -17,7 +17,7 @@ export const _rename = (name: string, newName: string): void => {
 		return;
 	}
 
-	Git.renameBranch(name, newName);
+	Git.branch.rename(name, newName);
 
 	const configPath = getConfigPath();
 	const partialConfig = getPartialConfig();

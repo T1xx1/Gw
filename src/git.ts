@@ -1,20 +1,23 @@
 import { execSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { join } from 'node:path/posix';
 
-import { tryCatchSync } from '@t1xx1/tsfix';
+import { tryCatchSync, type Result } from '@t1xx1/tsfix';
 import { parse } from 'ini';
 
 import { panic } from './panic.js';
 
-const exec = (cmd: string, duid: string): string => {
-	const { data, error } = tryCatchSync(() => {
+const exec = (cmd: string): Result<string, Error> => {
+	return tryCatchSync(() => {
 		return execSync(cmd, {
 			stdio: 'pipe',
 		})
 			.toString()
 			.trimEnd();
 	});
+};
+const execPanic = (cmd: string, duid: string): string => {
+	const { data, error } = exec(cmd);
 
 	if (error || data === null) {
 		throw panic(duid);
@@ -25,19 +28,13 @@ const exec = (cmd: string, duid: string): string => {
 
 export namespace Git {
 	export const getVersion = (): string => {
-		return exec('git -v', 'MPR0EM1AJ0').split(' ').at(-1)!;
+		return execPanic('git version', 'MPR0EM1AJ0').split(' ').at(-1)!;
 	};
 
+	/*  */
+
 	export const isRepo = (): boolean => {
-		const { data, error } = tryCatchSync(() => {
-			return (
-				execSync('git rev-parse --is-inside-work-tree', {
-					stdio: 'pipe',
-				})
-					.toString()
-					.trimEnd() === 'true'
-			);
-		});
+		const { data, error } = exec('git rev-parse --is-inside-work-tree');
 
 		if (error || data === null) {
 			return false;
@@ -46,108 +43,116 @@ export namespace Git {
 		return true;
 	};
 
+	export const getRoot = (): string => {
+		return execPanic('git rev-parse --show-toplevel', 'MPRC29HLJI');
+	};
+
+	export const getGitPath = (): string => {
+		return join(getRoot(), '.git');
+	};
+
+	/*  */
+
 	export const init = (): void => {
-		exec('git init', 'MPR0RFFAYO');
+		execPanic('git init', 'MPR0RFFAYO');
 	};
 
 	/*  */
 
 	export const getStatus = (): string => {
-		return exec('git status --porcelain', 'MPVR0YXKHK');
+		return execPanic('git status --porcelain', 'MPVR0YXKHK');
 	};
 
 	/*  */
 
 	export const getGraph = (): string => {
-		return exec('git -c color.ui=always log --all --graph --decorate --oneline', 'MPR0EM1AJ0');
+		return execPanic('git -c color.ui=always log --all --graph --decorate --oneline', 'MPR0EM1AJ0');
 	};
 
 	export const stageAll = (): void => {
-		exec('git add --all', 'MPR0EM1AJ0');
+		execPanic('git add --all', 'MPR0EM1AJ0');
 	};
 
 	/*  */
 
-	export const getCurrBranch = (): string => {
-		return exec('git branch --show-current', 'MPRBX7LBVW');
-	};
+	export namespace branch {
+		export const getCurr = (): string => {
+			return execPanic('git branch --show-current', 'MPRBX7LBVW');
+		};
 
-	export const getBranches = (): string[] => {
-		return exec('git branch --format="%(refname:short)"', 'MPPD6WR9TK').split('\n');
-	};
+		export const getAll = (): string[] => {
+			return execPanic('git branch --format="%(refname:short)"', 'MPPD6WR9TK').split('\n');
+		};
 
-	export const createBranch = (name: string): void => {
-		exec(`git branch ${name}`, 'MPRI2ZDOTD');
-	};
+		export const create = (name: string): void => {
+			execPanic(`git branch ${name}`, 'MPRI2ZDOTD');
+		};
 
-	export const renameBranch = (name: string, newName: string): void => {
-		exec(`git branch -m ${name} ${newName}`, 'MPRI5XS8UB');
-	};
+		export const rename = (name: string, newName: string): void => {
+			execPanic(`git branch -m ${name} ${newName}`, 'MPRI5XS8UB');
+		};
 
-	export const deleteBranch = (name: string): void => {
-		exec(`git branch -D ${name}`, 'MPRI5JFJF9');
-	};
+		export const del = (name: string): void => {
+			execPanic(`git branch -D ${name}`, 'MPRI5JFJF9');
+		};
 
-	export const checkoutBranch = (name: string): void => {
-		exec(`git checkout ${name}`, 'MPQ1H7USLF');
-	};
+		export const checkout = (name: string): void => {
+			execPanic(`git checkout ${name}`, 'MPQ1H7USLF');
+		};
+	}
 
 	/*  */
 
-	export const getCurrWorktreeRoot = (): string => {
-		return exec('git rev-parse --show-toplevel', 'MPRC29HLJI');
-	};
+	export namespace worktree {
+		export const getWorktreeBranches = () => {
+			const chunks = execPanic('git worktree list --porcelain', 'MPPD6WR9TK').split('\n\n');
 
-	export const getWorktreeBranches = () => {
-		const chunks = exec('git worktree list --porcelain', 'MPPD6WR9TK').split('\n\n');
+			return chunks.map((line) => {
+				return line.split('\n')[2].split('/').at(-1)!;
+			});
+		};
 
-		return chunks.map((line) => {
-			return line.split('\n')[2].split('/').at(-1)!;
-		});
-	};
+		export const getAll = () => {
+			const chunks = execPanic('git worktree list --porcelain', 'MPPD6WR9TK').split('\n\n');
 
-	export const getWorktrees = () => {
-		const chunks = exec('git worktree list --porcelain', 'MPPD6WR9TK').split('\n\n');
+			return Object.fromEntries(
+				chunks.map((line) => {
+					const lines = line.split('\n');
 
-		return Object.fromEntries(
-			chunks.map((line) => {
-				const lines = line.split('\n');
+					return [lines[2].split('/').at(-1)!, lines[0].split(' ').at(-1)!];
+				}),
+			);
+		};
 
-				return [lines[2].split('/').at(-1)!, lines[0].split(' ').at(-1)!];
-			}),
-		);
-	};
+		export const create = (name: string, path: string): void => {
+			execPanic(`git worktree add ${path} ${name}`, 'MPRJMY1VZU');
+		};
 
-	export const pruneWorktrees = (): void => {
-		exec('git worktree prune', 'MPTMSSVLWX');
-	};
+		export const del = (path: string): void => {
+			execPanic(`git worktree remove --force ${path}`, 'MPTMRPSDDV');
+		};
 
-	export const createWorktree = (name: string, path: string): void => {
-		exec(`git worktree add ${path} ${name}`, 'MPRJMY1VZU');
-	};
-
-	export const deleteWorktree = (path: string): void => {
-		exec(`git worktree remove --force ${path}`, 'MPTMRPSDDV');
-	};
+		export const prune = (): void => {
+			execPanic('git worktree prune', 'MPTMSSVLWX');
+		};
+	}
 
 	/*  */
 
 	export namespace submodule {
-		export const getSubmodulesConfigPath = (dir: string = getCurrWorktreeRoot()): string => {
+		export const getConfigPath = (dir: string = getRoot()): string => {
 			return join(dir, '.gitmodules');
 		};
 
 		export type Config = {
-			[submodule: string]: {
+			[submodule: `submodule "${string}"`]: {
 				path: string;
 				url: string;
 				branch?: string;
 			};
 		};
 
-		export const getSubmodulesConfig = (
-			submodulesConfigPath: string = getSubmodulesConfigPath(),
-		): Config => {
+		export const getConfig = (submodulesConfigPath: string = getConfigPath()): Config => {
 			if (!existsSync(submodulesConfigPath)) {
 				return {};
 			}
@@ -158,7 +163,7 @@ export namespace Git {
 		/*  */
 
 		export const getStatus = (): string => {
-			return exec(
+			return execPanic(
 				'git submodule foreach --quiet "echo $name && git branch --show-current"',
 				'MQC6N3XDML',
 			);
@@ -166,14 +171,14 @@ export namespace Git {
 
 		export const add = (url: string, path: string = '.'): void => {
 			if (path === '.') {
-				exec(`git submodule add -f ${url}`, 'MQE11E833S');
+				execPanic(`git submodule add -f ${url}`, 'MQE11E833S');
 			} else {
-				exec(`git submodule add -f ${url} ${path}`, 'MQC5MQHT4M');
+				execPanic(`git submodule add -f ${url} ${path}`, 'MQC5MQHT4M');
 			}
 		};
 
 		export const deinit = (path: string): void => {
-			exec(`git submodule deinit -f ${path}`, 'MQCQEMJUMH');
+			execPanic(`git submodule deinit -f ${path}`, 'MQCQEMJUMH');
 		};
 	}
 }

@@ -7,14 +7,14 @@ import { guard } from '../../guard.js';
 export const _create = (name: string): void => {
 	guard.isRepo();
 
-	if (Git.getBranches().includes(name)) {
+	if (Git.branch.getAll().includes(name)) {
 		console.log(chalk.grey(`Branch '${name}' already exists`));
 		console.log(chalk.grey(`Use '>gw branch checkout ${name}' to checkout`));
 
 		return;
 	}
 
-	Git.createBranch(name);
+	Git.branch.create(name);
 
 	console.log(chalk.green(`Branch '${name}' created`));
 };

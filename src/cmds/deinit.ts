@@ -1,5 +1,4 @@
 import { rmSync } from 'node:fs';
-import { join } from 'node:path/posix';
 
 import { confirm } from '@clack/prompts';
 import chalk from 'chalk';
@@ -25,7 +24,7 @@ export const _deinit = async (): Promise<void> => {
 		return;
 	}
 
-	rmSync(join(Git.getCurrWorktreeRoot(), '.git'), {
+	rmSync(Git.getGitPath(), {
 		force: true,
 		recursive: true,
 	});

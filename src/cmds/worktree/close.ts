@@ -7,7 +7,7 @@ import { guard } from '../../guard.js';
 
 export const _close = (name: string): void => {
 	guard.isRepo();
-	Git.pruneWorktrees();
+	Git.worktree.prune();
 	guard.branchExists(name);
 
 	const config = getConfig();
@@ -18,7 +18,7 @@ export const _close = (name: string): void => {
 		return;
 	}
 
-	const worktrees = Git.getWorktrees();
+	const worktrees = Git.worktree.getAll();
 
 	if (!worktrees[name]) {
 		console.log(chalk.grey(`Branch '${name}' is not a worktree`));
@@ -26,8 +26,8 @@ export const _close = (name: string): void => {
 		return;
 	}
 
-	Git.deleteWorktree(worktrees[name]);
-	Git.pruneWorktrees();
+	Git.worktree.del(worktrees[name]);
+	Git.worktree.prune();
 
 	console.log(chalk.green(`Worktree '${name}' closed`));
 };

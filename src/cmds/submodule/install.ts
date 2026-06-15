@@ -19,8 +19,8 @@ export const _install = (url: string): void => {
 
 	guard.noChanges();
 
-	const submodulesConfigPath = Git.submodule.getSubmodulesConfigPath();
-	const submodulesConfig = Git.submodule.getSubmodulesConfig(submodulesConfigPath);
+	const submodulesConfigPath = Git.submodule.getConfigPath();
+	const submodulesConfig = Git.submodule.getConfig(submodulesConfigPath);
 	const name = url.split('/').at(-1)!.split('.')[0];
 
 	if (

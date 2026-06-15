@@ -8,10 +8,10 @@ import { guard } from '../../guard.js';
 
 export const _checkout = (name: string): void => {
 	guard.isRepo();
-	Git.pruneWorktrees();
+	Git.worktree.prune();
 	guard.branchExists(name);
 
-	const worktrees = Git.getWorktrees();
+	const worktrees = Git.worktree.getAll();
 
 	if (!worktrees[name]) {
 		console.log(chalk.grey(`Branch '${name}' is not a worktree`));

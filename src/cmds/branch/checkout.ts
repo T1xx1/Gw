@@ -15,7 +15,7 @@ export const _checkout = (name: string): void => {
 		return;
 	}
 
-	Git.checkoutBranch(name);
+	Git.branch.checkout(name);
 
 	console.log(chalk.green(`Checked out to branch '${name}'`));
 };

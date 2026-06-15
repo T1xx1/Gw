@@ -4,10 +4,10 @@ import { Cmd } from '../cmd.js';
 import { Git } from '../git.js';
 import { guard } from '../guard.js';
 
-export const _graph = (opts: { limit: `${number}` }): void => {
+export const _graph = (options: { limit: `${number}` }): void => {
 	guard.isRepo();
 
-	const limit = parseInt(opts.limit);
+	const limit = parseInt(options.limit);
 
 	if (limit < -1 || limit === 0) {
 		console.log(chalk.redBright('`limit` must be -1 or greater than 0'));

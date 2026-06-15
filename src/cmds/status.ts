@@ -10,7 +10,7 @@ export const _status = (): void => {
 	guard.isRepo();
 
 	const config = getConfig();
-	const currBranch = Git.getCurrBranch();
+	const currBranch = Git.branch.getCurr();
 
 	console.log(`${styleBranch(currBranch, config.branches.mainBranch, currBranch)}\n`);
 

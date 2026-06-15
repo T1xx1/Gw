@@ -9,9 +9,9 @@ import { guard } from '../../guard.js';
 
 export const _create = (name: string): void => {
 	guard.isRepo();
-	Git.pruneWorktrees();
+	Git.worktree.prune();
 
-	const branches = Git.getBranches();
+	const branches = Git.branch.getAll();
 
 	if (branches.includes(name)) {
 		console.log(chalk.grey(`Branch '${name}' already exists`));
@@ -20,7 +20,7 @@ export const _create = (name: string): void => {
 		return;
 	}
 
-	const worktrees = Git.getWorktrees();
+	const worktrees = Git.worktree.getAll();
 
 	if (worktrees[name]) {
 		console.log(chalk.grey(`Worktree '${name}' already exists`));
@@ -33,8 +33,8 @@ export const _create = (name: string): void => {
 	const mainWorktreeRoot = worktrees[config.branches.mainBranch];
 	const repoName = mainWorktreeRoot.split('/').at(-1)!;
 
-	Git.createBranch(name);
-	Git.createWorktree(name, join(mainWorktreeRoot, config.worktrees.dir, `${repoName}-${name}`));
+	Git.branch.create(name);
+	Git.worktree.create(name, join(mainWorktreeRoot, config.worktrees.dir, `${repoName}-${name}`));
 
 	console.log(chalk.green(`Worktree '${name}' created`));
 };

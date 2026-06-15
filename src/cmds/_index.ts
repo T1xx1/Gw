@@ -8,4 +8,4 @@ export { init } from './init.js';
 export { status } from './status.js';
 export { submodule } from './submodule/_index.js';
 export { version } from './version.js';
-export { worktree } from './woktree/_index.js';
+export { worktree } from './worktree/_index.js';

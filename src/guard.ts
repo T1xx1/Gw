@@ -23,7 +23,7 @@ export const guard = {
 
 		exit(0);
 	},
-	branchExists: (name: string, branches: string[] = Git.getBranches()): void | never => {
+	branchExists: (name: string, branches: string[] = Git.branch.getAll()): void | never => {
 		if (branches.includes(name)) {
 			return;
 		}
