@@ -18,7 +18,7 @@ export const _delete = (name: string): void => {
 
 	guard.branchExists(name);
 
-	if (Git.getWorktrees()[name]) {
+	if (Git.worktree.getAll()[name]) {
 		console.log(chalk.redBright(`Branch '${name}' is a worktree`));
 		console.log(chalk.grey(`Use '>gw worktree delete ${name}' to delete the worktree`));
 

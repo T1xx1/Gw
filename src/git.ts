@@ -104,7 +104,7 @@ export namespace Git {
 	/*  */
 
 	export namespace worktree {
-		export const getWorktreeBranches = () => {
+		export const getBranches = () => {
 			const chunks = execPanic('git worktree list --porcelain', 'MPPD6WR9TK').split('\n\n');
 
 			return chunks.map((line) => {
@@ -145,7 +145,7 @@ export namespace Git {
 		};
 
 		export type Config = {
-			[submodule: `submodule "${string}"`]: {
+			[submodule: string]: {
 				path: string;
 				url: string;
 				branch?: string;
