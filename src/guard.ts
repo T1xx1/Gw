@@ -5,7 +5,7 @@ import chalk from 'chalk';
 import { Git } from './git.js';
 
 export const guard = {
-	isRepo: (isRepo: boolean = Git.isRepo()) => {
+	isRepo: (isRepo: boolean = Git.isRepo()): void | never => {
 		if (isRepo) {
 			return;
 		}
@@ -14,7 +14,7 @@ export const guard = {
 
 		exit(0);
 	},
-	noChanges: (status: string = Git.getStatus()) => {
+	noChanges: (status: string = Git.getStatus()): void | never => {
 		if (status === '') {
 			return;
 		}
@@ -23,7 +23,7 @@ export const guard = {
 
 		exit(0);
 	},
-	branchExists: (name: string, branches: string[] = Git.getBranches()) => {
+	branchExists: (name: string, branches: string[] = Git.getBranches()): void | never => {
 		if (branches.includes(name)) {
 			return;
 		}
@@ -32,7 +32,7 @@ export const guard = {
 
 		exit(0);
 	},
-	submoduleExists: (name: string, submodulesConfig: Git.submodule.Config) => {
+	submoduleExists: (name: string, submodulesConfig: Git.submodule.Config): void | never => {
 		if (`submodule "${name}"` in submodulesConfig) {
 			return;
 		}
