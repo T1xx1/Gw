@@ -5,8 +5,4 @@ export const _version = (): void => {
 	console.log(packageJson.version);
 };
 
-export const version = Cmd('version')
-	.alias('v')
-	.description('print version')
-	.option('--binds', 'print bindings')
-	.action(_version);
+export const version = Cmd('version').alias('v').description('print version').action(_version);
