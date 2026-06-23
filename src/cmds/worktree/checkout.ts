@@ -1,4 +1,4 @@
-import { chdir } from 'node:process';
+import { execSync } from 'node:child_process';
 
 import chalk from 'chalk';
 
@@ -19,9 +19,7 @@ export const _checkout = (name: string): void => {
 		return;
 	}
 
-	chdir(worktrees[name]);
-
-	console.log(chalk.green(`Checked out to worktree '${name}'`));
+	execSync(`wt -d ${worktrees[name]}`);
 };
 
 export const checkout = Cmd('checkout')
