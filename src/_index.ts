@@ -11,8 +11,10 @@ import {
 	config,
 	graph,
 	repository,
+	stash,
 	status,
 	submodule,
+	tag,
 	version,
 	worktree,
 } from './cmds/_index.js';
@@ -45,8 +47,10 @@ shell
 	.addCommand(config)
 	.addCommand(graph)
 	.addCommand(repository)
+	.addCommand(stash)
 	.addCommand(status)
 	.addCommand(submodule)
+	.addCommand(tag)
 	.addCommand(worktree);
 
 /* */
