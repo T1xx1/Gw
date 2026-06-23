@@ -1,5 +1,8 @@
+import { join } from 'node:path';
+
 import chalk from 'chalk';
 import { Command } from 'commander';
+import { config as dotenvConfig } from 'dotenv';
 
 import packageJson from '../package.json' with { type: 'json' };
 import {
@@ -13,6 +16,12 @@ import {
 	version,
 	worktree,
 } from './cmds/_index.js';
+
+dotenvConfig({
+	override: true,
+	path: join(import.meta.dirname, '..\\.env'),
+	quiet: true,
+});
 
 const shell = new Command(packageJson.name)
 	.version(packageJson.version, '--version, -v', 'print version')
