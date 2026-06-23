@@ -20,14 +20,15 @@ export const _delete = (name: string): void => {
 	guard.branchExists(name);
 
 	const worktrees = Git.worktree.getAll();
+	const worktreeRoot = worktrees[name];
 
-	if (!worktrees[name]) {
+	if (!worktreeRoot) {
 		console.log(chalk.grey(`Branch '${name}' is not a worktree`));
 
 		return;
 	}
 
-	Git.worktree.del(worktrees[name]);
+	Git.worktree.del(worktreeRoot);
 	Git.worktree.prune();
 	Git.branch.del(name);
 

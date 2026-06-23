@@ -1,5 +1,3 @@
-import { rmSync } from 'node:fs';
-
 import { confirm } from '@clack/prompts';
 import chalk from 'chalk';
 
@@ -16,10 +14,7 @@ export const _deinit = async (): Promise<void> => {
 				message: 'Are you sure you want to deinitialize the Git repo?',
 			})
 		) {
-			rmSync(Git.getGitPath(), {
-				force: true,
-				recursive: true,
-			});
+			Git.deinit();
 
 			console.log(chalk.green('Git repo deinitialized'));
 		}

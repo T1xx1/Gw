@@ -19,14 +19,15 @@ export const _close = (name: string): void => {
 	}
 
 	const worktrees = Git.worktree.getAll();
+	const worktreeRoot = worktrees[name];
 
-	if (!worktrees[name]) {
+	if (!worktreeRoot) {
 		console.log(chalk.grey(`Branch '${name}' is not a worktree`));
 
 		return;
 	}
 
-	Git.worktree.del(worktrees[name]);
+	Git.worktree.del(worktreeRoot);
 	Git.worktree.prune();
 
 	console.log(chalk.green(`Worktree '${name}' closed`));

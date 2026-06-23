@@ -35,7 +35,7 @@ export const _install = (url: string): void => {
 
 	const path = `submodules/${name}`;
 
-	Git.submodule.add(url, path);
+	Git.submodule.install(url, path);
 
 	submodulesConfig[`submodule "${name}"`] = {
 		path,
