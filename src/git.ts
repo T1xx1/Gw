@@ -1,8 +1,10 @@
 import { execSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path/posix';
+import { env } from 'node:process';
 
 import { tryCatchSync, type Result } from '@t1xx1/tsfix';
+import chalk from 'chalk';
 import { parse } from 'ini';
 
 import { panic } from './panic.js';
@@ -18,6 +20,10 @@ const exec = (cmd: string): Result<string, Error> => {
 };
 const execPanic = (cmd: string, duid: string): string => {
 	const { data, error } = exec(cmd);
+
+	if (env['ENV'] === 'dev' && error !== null) {
+		console.log(chalk.magenta(error));
+	}
 
 	if (error || data === null) {
 		throw panic(duid);
