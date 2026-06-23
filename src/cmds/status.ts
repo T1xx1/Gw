@@ -12,7 +12,7 @@ export const _status = (): void => {
 	const config = getConfig();
 	const currBranch = Git.branch.getCurr();
 
-	console.log(`${styleBranch(currBranch, config.branches.mainBranch, currBranch)}\n`);
+	console.log(`⌥ ${styleBranch(currBranch, config.branches.mainBranch, currBranch)}\n`);
 
 	const status = Git.getStatus();
 
