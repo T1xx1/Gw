@@ -1,4 +1,5 @@
 import { join } from 'node:path/posix';
+import { chdir } from 'node:process';
 
 import chalk from 'chalk';
 
@@ -32,9 +33,13 @@ export const _create = (name: string): void => {
 	const config = getConfig();
 	const mainWorktreeRoot = worktrees[config.branches.mainBranch];
 	const repoName = mainWorktreeRoot.split('/').at(-1)!;
+	const worktreeRoot = join(mainWorktreeRoot, config.worktrees.dir, `${repoName}-${name}`);
 
 	Git.branch.create(name);
-	Git.worktree.create(name, join(mainWorktreeRoot, config.worktrees.dir, `${repoName}-${name}`));
+	Git.worktree.create(name, worktreeRoot);
+
+	chdir(worktreeRoot);
+	Git.submodule.init();
 
 	console.log(chalk.green(`Worktree '${name}' created`));
 };

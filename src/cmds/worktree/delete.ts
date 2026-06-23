@@ -1,3 +1,5 @@
+import { chdir } from 'node:process';
+
 import chalk from 'chalk';
 
 import { Cmd } from '../../cmd.js';
@@ -27,6 +29,9 @@ export const _delete = (name: string): void => {
 
 		return;
 	}
+
+	chdir(worktreeRoot);
+	Git.submodule.deinit();
 
 	Git.worktree.del(worktreeRoot);
 	Git.worktree.prune();
