@@ -14,6 +14,8 @@ export const _init = (): void => {
 	}
 
 	_configInit();
+
+	Git.commitAll('Initial commit');
 };
 
 export const init = Cmd('init').description('initialize Git repo and Gw config').action(_init);

@@ -81,6 +81,10 @@ export namespace Git {
 	export const commit = (message: string): void => {
 		execPanic(`git commit -m "${message}"`, 'MQR1MF5D47');
 	};
+	export const commitAll = (message: string): void => {
+		stageAll();
+		commit(message);
+	};
 
 	/*  */
 
