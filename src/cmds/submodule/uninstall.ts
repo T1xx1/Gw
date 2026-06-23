@@ -19,7 +19,7 @@ export const _uninstall = (name: string): void => {
 	const submodule = `submodule "${name}"`;
 	const submoduleEntry = submodulesConfig[submodule];
 
-	Git.submodule.deinit(submoduleEntry.path);
+	Git.submodule.uninstall(submoduleEntry.path);
 
 	rmSync(`.git/modules/submodules/${name}`, {
 		recursive: true,

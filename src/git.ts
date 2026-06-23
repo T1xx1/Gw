@@ -183,7 +183,7 @@ export namespace Git {
 			}
 		};
 
-		export const deinit = (path: string): void => {
+		export const uninstall = (path: string): void => {
 			execPanic(`git submodule deinit -f ${path}`, 'MQCQEMJUMH');
 		};
 	}
