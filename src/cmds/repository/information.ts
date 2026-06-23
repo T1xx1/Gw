@@ -52,6 +52,7 @@ export const _information = (): void => {
 };
 
 export const information = Cmd('information')
+	.alias('i')
 	.alias('info')
 	.description('print information')
 	.action(_information);
