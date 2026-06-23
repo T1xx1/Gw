@@ -8,28 +8,24 @@ import { Git } from '../../git.js';
 import { _deinit as _configDeinit } from '../config/deinit.js';
 
 export const _deinit = async (): Promise<void> => {
-	await _configDeinit();
-
 	if (!Git.isRepo()) {
 		console.log(chalk.grey('No Git repo to deinitialize'));
+	} else {
+		if (
+			await confirm({
+				message: 'Are you sure you want to deinitialize the Git repo?',
+			})
+		) {
+			rmSync(Git.getGitPath(), {
+				force: true,
+				recursive: true,
+			});
 
-		return;
+			console.log(chalk.green('Git repo deinitialized'));
+		}
 	}
 
-	if (
-		!(await confirm({
-			message: 'Are you sure you want to deinitialize the Git repo?',
-		}))
-	) {
-		return;
-	}
-
-	rmSync(Git.getGitPath(), {
-		force: true,
-		recursive: true,
-	});
-
-	console.log(chalk.green('Git repo deinitialized'));
+	await _configDeinit();
 };
 
 export const deinit = Cmd('deinit')

@@ -7,13 +7,11 @@ import { _init as _configInit } from '../config/init.js';
 export const _init = (): void => {
 	if (Git.isRepo()) {
 		console.log(chalk.grey('Git repo is already initialized'));
+	} else {
+		Git.init();
 
-		return;
+		console.log(chalk.green('Git repo initialized'));
 	}
-
-	Git.init();
-
-	console.log(chalk.green('Git repo initialized'));
 
 	_configInit();
 };
