@@ -9,7 +9,7 @@
 		"dev": "tsc -w",
 		"build": "tsc",
 		"format": "biome format --write",
-		"lint": "biome lint"
+		"lint": "biome lint --fix"
 	},
 	"dependencies": {
 		"@clack/prompts": "^1.4.0",
