@@ -19,7 +19,6 @@
 		"noUnusedParameters": true,
 		"verbatimModuleSyntax": true,
 		/* compiler */
-		"target": "ESNext",
-		"outDir": "./dist"
+		"noEmit": true
 	}
 }
