@@ -19,7 +19,7 @@ export const _checkout = (name: string): void => {
 		return;
 	}
 
-	execSync(`wt -d ${worktrees[name]}`);
+	execSync(`wt -w 0 -d ${worktrees[name]} nt`);
 };
 
 export const checkout = Cmd('checkout')
