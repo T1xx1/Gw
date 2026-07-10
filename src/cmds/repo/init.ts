@@ -1,10 +1,18 @@
+import { existsSync, writeFileSync } from 'node:fs';
+
 import chalk from 'chalk';
 
 import { Cmd } from '../../cmd.js';
+import { getConfigPath, initialConfig } from '../../config/_index.js';
 import { Git } from '../../git.js';
-import { _init as _configInit } from '../config/init.js';
 
 export const _init = (): void => {
+	const configPath = getConfigPath();
+
+	if (!existsSync(configPath)) {
+		writeFileSync(configPath, JSON.stringify(initialConfig, null, '\t'));
+	}
+
 	if (Git.isRepo()) {
 		console.log(chalk.grey('Git repo is already initialized'));
 	} else {
@@ -12,8 +20,6 @@ export const _init = (): void => {
 
 		console.log(chalk.green('Git repo initialized'));
 	}
-
-	_configInit();
 
 	Git.commitAll('Initial commit');
 };
