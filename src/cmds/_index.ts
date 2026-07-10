@@ -2,7 +2,7 @@ export { bindings } from './bindings.js';
 export { branch } from './branch/_index.js';
 export { config } from './config/_index.js';
 export { graph } from './graph.js';
-export { repository } from './repository/_index.js';
+export { repo } from './repo/_index.js';
 export { stash } from './stash/_index.js';
 export { status } from './status.js';
 export { submodule } from './submodule/_index.js';

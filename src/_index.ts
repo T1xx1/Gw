@@ -10,7 +10,7 @@ import {
 	branch,
 	config,
 	graph,
-	repository,
+	repo,
 	stash,
 	status,
 	submodule,
@@ -46,7 +46,7 @@ shell
 	.addCommand(branch)
 	.addCommand(config)
 	.addCommand(graph)
-	.addCommand(repository)
+	.addCommand(repo)
 	.addCommand(stash)
 	.addCommand(status)
 	.addCommand(submodule)
